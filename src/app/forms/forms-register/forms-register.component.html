@@ -1,0 +1,34 @@
+<form [formGroup]="formGroup">
+  <div class="center">
+    <div class="container">
+      <label for="email">E-mail:</label>
+      <input formControlName="email" id="email" type="email" placeholder="E-mail">
+
+      <ng-container formGroupName="passwordGroup">
+        <label for="password">Password:</label>
+        <input formControlName="password" id="password" type="password" placeholder="Password">
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input formControlName="confirmPassword" id="confirm-password" type="password" placeholder="Confirm Password">
+      </ng-container>
+
+      <label for="nickname">Nickname:</label>
+      <input formControlName="nickname" id="nickname" type="text" placeholder="Nickname">
+
+      <label for="phone-number">Phone Number:</label>
+      <input formControlName="phoneNumber" id="phone-number" type="tel" placeholder="Phone Number">
+
+      <label for="website">Website:</label>
+      <input formControlName="website" id="website" type="url" placeholder="Website">
+
+      <div></div>
+      <div class="agreement">
+        <input formControlName="agreement" id="agreement" type="checkbox">
+        <label for="agreement">&nbsp;I have read the <a href="">agreement</a></label>
+      </div>
+
+      <div></div>
+      <button type="submit">Register</button>
+    </div>
+  </div>
+</form>
