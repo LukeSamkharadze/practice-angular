@@ -1,0 +1,14 @@
+.main-container
+{
+  padding: 50px;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+
+  >.button-container
+  {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+}

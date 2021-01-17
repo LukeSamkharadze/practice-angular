@@ -43,7 +43,7 @@ $alert-background-color: wheat;
         top: $input-height;
         height: 35px;
         background-color: white;
-        box-shadow: 0 0 5px 0.5px hsla(0, 0%, 0%, 0.5);
+        box-shadow: 2px 2px 2px 1px hsla(0, 0%, 0%, 0.5);
         border-radius: 5px;
         white-space: nowrap;
         background-color: $alert-background-color;
@@ -88,6 +88,7 @@ $alert-background-color: wheat;
       border: none;
       border-radius: 5px;
       letter-spacing: 1px;
+      box-shadow: 2px 2px 2px 1px hsla(0, 0%, 0%, 0.5);
     }
 
     >button:disabled,
