@@ -1,3 +1,8 @@
+$input-height: 35px;
+$agreement-height: 25px;
+
+$alert-background-color: wheat;
+
 .center {
   display: flex;
   justify-content: center;
@@ -7,30 +12,72 @@
     grid-template-columns: auto 1fr;
     row-gap: 30px;
     column-gap: 10px;
-    justify-items: end;
     align-items: center;
     text-align: end;
     max-width: 750px;
 
     > label {
       margin: 0;
+      justify-self: end;
     }
 
-    > input {
-      width: 100%;
-      height: 35px;
-      border: 2px solid hsla(0, 0%, 50%, 0.5);
-      border-radius: 5px;
-      padding: 0 10px;
+    > div {
+      position: relative;
+
+      > input {
+        width: 100%;
+        height: 35px;
+        border: 2px solid hsla(0, 0%, 50%, 0.25);
+        border-radius: 5px;
+        padding: 0 10px;
+      }
+
+      > .invalid-alert {
+        transition: all 0.5s;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        padding: 10px;
+        top: $input-height;
+        height: 35px;
+        background-color: white;
+        box-shadow: 0 0 5px 0.5px hsla(0, 0%, 0%, 0.5);
+        border-radius: 5px;
+        white-space: nowrap;
+        background-color: $alert-background-color;
+        color: firebrick;
+
+        &:before {
+          position: absolute;
+          content: "";
+          left: 5px;
+          top: -12px;
+          border: 6px solid transparent;
+          border-color: transparent transparent $alert-background-color transparent;
+        }
+      }
     }
 
     > .agreement {
       justify-self: start;
+
+      > input {
+        all: revert;
+      }
+
       > label {
         > a {
           font-weight: 700;
         }
       }
+
+      >.invalid-alert
+      {
+        top: $agreement-height;
+      }
+
     }
 
     > button {
@@ -41,6 +88,12 @@
       border: none;
       border-radius: 5px;
       letter-spacing: 1px;
+    }
+
+    >button:disabled,
+    >button[disabled]
+    {
+      background-color: gray;
     }
   }
 }
