@@ -1,15 +1,27 @@
 <div class="main-container">
-  <div class="user" *ngFor="let user of usersService.users">
-    <div>Nickname:</div>
-    <div>{{user.nickname}}</div>
+  <div class="user" *ngFor="let user of usersService.users" (click)="onUserClicked(user)">
+    <div class="user-info">
+      <div>Nickname:</div>
+      <div>{{user.nickname}}</div>
 
-    <div>Email:</div>
-    <div>{{user.email}}</div>
+      <div>Email:</div>
+      <div>{{user.email}}</div>
 
-    <div>Phone number:</div>
-    <div> {{user.phoneNumber}}</div>
+      <div>Phone number:</div>
+      <div>{{user.phoneNumber}}</div>
 
-    <div>Website:</div>
-    <div> {{user.website}}</div>
+      <div>Website:</div>
+      <div>{{user.website}}</div>
+    </div>
+
+    <div *ngIf="activeUser === user" class="edit-menu">
+      <button class="btn btn-primary">
+        <i class="fas fa-user-edit"></i>
+      </button>
+
+      <button class="btn btn-danger">
+        <i class="fas fa-user-slash"></i>
+      </button>
+    </div>
   </div>
 </div>

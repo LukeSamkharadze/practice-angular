@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../user';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -7,5 +8,11 @@ import { UsersService } from '../users.service';
   styleUrls: ['./forms-users-list.component.scss']
 })
 export class FormsUsersListComponent {
+  activeUser: User | null = null;
+
   constructor(public usersService: UsersService) { }
+
+  onUserClicked(user: User) {
+    this.activeUser = user;
+  }
 }

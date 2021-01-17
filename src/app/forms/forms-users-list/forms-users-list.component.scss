@@ -1,21 +1,50 @@
+$edit-menu-color: rgba(0, 0, 0, 0.75);
+
 .main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  
-  .user {
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    padding: 10px;
-    gap: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
-    background-color: beige;
+  gap: 30px;
 
-    > *:nth-child(odd) {
-      justify-self: end;
+  .user {
+    position: relative;
+    > .user-info {
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      padding: 15px;
+      gap: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+      background-color: Azure;
+
+      > *:nth-child(odd) {
+        justify-self: end;
+      }
+    }
+
+    >.edit-menu
+    {
+      width: 100%;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      gap:20px;
+      z-index: 2;
+      background-color: $edit-menu-color;
+      border-radius: 10px;
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+      padding: 10px;
+
+      &:before
+      {
+        content: "";
+        position: absolute;
+        top: -21px;
+        left: 10px;
+        border: 10px solid;
+        border-color: transparent transparent $edit-menu-color transparent;
+      }
     }
   }
 }
