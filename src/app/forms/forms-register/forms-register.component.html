@@ -12,7 +12,8 @@
         <label for="password">Password:</label>
         <div>
           <input formControlName="password" id="password" type="password" placeholder="Password">
-          <div [style.opacity]="getAlertOpacity('password', ['passwordGroup'])" class="invalid-alert">Password is not valid</div>
+          <div [style.opacity]="getAlertOpacity('password', ['passwordGroup'])" class="invalid-alert">Password is not
+            valid</div>
         </div>
 
         <label for="confirm-password">Confirm Password:</label>
@@ -42,14 +43,13 @@
 
       <div></div>
       <div class="agreement">
-        <input formControlName="agreement" id="agreement" type="checkbox">
+        <input formControlName="agreement" id="agreement" type="checkbox" required>
         <label for="agreement">&nbsp;I have read the <a href="">agreement</a></label>
         <div [style.opacity]="getAlertOpacity('agreement')" class="invalid-alert">You must agree to the agreement</div>
       </div>
 
       <div></div>
       <button [disabled]="!formGroup.valid" type="submit">Register</button>
-      <!-- <button type="submit">Register</button> -->
     </div>
   </div>
 </form>
