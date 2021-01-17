@@ -25,4 +25,8 @@ export class UsersService {
   addUser(user: User) {
     this.users.push(user);
   }
+
+  removeUser(email: string) {
+    this.users = this.users.filter(o => o.email !== email);
+  }
 }

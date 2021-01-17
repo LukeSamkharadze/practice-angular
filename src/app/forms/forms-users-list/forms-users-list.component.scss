@@ -25,6 +25,7 @@ $edit-menu-color: rgba(0, 0, 0, 0.75);
 
     >.edit-menu
     {
+      transition: all 0.5s ease;
       width: 100%;
       position: absolute;
       display: flex;

@@ -14,12 +14,12 @@
       <div>{{user.website}}</div>
     </div>
 
-    <div *ngIf="activeUser === user" class="edit-menu">
+    <div [style.opacity]="getUserMenuOpacity(user)" class="edit-menu">
       <button class="btn btn-primary">
         <i class="fas fa-user-edit"></i>
       </button>
 
-      <button class="btn btn-danger">
+      <button class="btn btn-danger" (click)="onUserDelete(user)">
         <i class="fas fa-user-slash"></i>
       </button>
     </div>

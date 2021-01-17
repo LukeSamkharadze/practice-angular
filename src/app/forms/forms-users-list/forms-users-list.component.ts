@@ -15,4 +15,12 @@ export class FormsUsersListComponent {
   onUserClicked(user: User) {
     this.activeUser = user;
   }
+
+  onUserDelete(user: User) {
+    this.usersService.removeUser(user.email);
+  }
+
+  getUserMenuOpacity(user: User): number {
+    return Number(this.activeUser === user) * 100;
+  }
 }
