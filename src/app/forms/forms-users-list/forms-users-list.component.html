@@ -1,1 +1,3 @@
-<p>forms-users-list works!</p>
+<ol>
+  <li *ngFor="let user of usersService.users">{{user.email}}</li>
+</ol>

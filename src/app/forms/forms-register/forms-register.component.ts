@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from '../users.service';
 import { ValidatorService } from '../validator.service';
 
 @Component({
@@ -8,6 +9,10 @@ import { ValidatorService } from '../validator.service';
   styleUrls: ['./forms-register.component.scss']
 })
 export class FormsRegisterComponent {
+  constructor(
+    private validatorService: ValidatorService,
+    private usersService: UsersService) { }
+
   formGroup = new FormGroup({
     email: new FormControl("", [Validators.required, this.validatorService.email]),
     passwordGroup: new FormGroup({
@@ -21,7 +26,15 @@ export class FormsRegisterComponent {
   });
 
   onSubmit() {
-    console.log(this.formGroup);
+    if (this.formGroup.valid) {
+      this.usersService.addUser({
+        email: this.formGroup.value.email,
+        password: this.formGroup.value.passwordGroup?.password,
+        nickname: this.formGroup.value.nickname,
+        phoneNumber: this.formGroup.value.phoneNumber,
+        website: this.formGroup.value.website,
+      })
+    }
   }
 
   private isAlertPermissible(formControlName: string, groupPath?: string[]): boolean {
@@ -35,6 +48,4 @@ export class FormsRegisterComponent {
   getAlertOpacity(formControlName: string, groupPath?: string[]): number {
     return Number(this.isAlertPermissible(formControlName, groupPath)) * 100;
   }
-
-  constructor(private validatorService: ValidatorService) { }
 }
