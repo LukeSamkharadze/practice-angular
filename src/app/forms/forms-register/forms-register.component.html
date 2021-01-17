@@ -12,8 +12,9 @@
         <label for="password">Password:</label>
         <div>
           <input formControlName="password" id="password" type="password" placeholder="Password">
-          <div [style.opacity]="getAlertOpacity('password', ['passwordGroup'])" class="invalid-alert">Password is not
-            valid</div>
+          <div [style.opacity]="getAlertOpacity('password', ['passwordGroup'])" class="invalid-alert">
+            Password should be more than 7 characters and contain only english alphabet and numbers
+          </div>
         </div>
 
         <label for="confirm-password">Confirm Password:</label>
@@ -26,13 +27,17 @@
       <label for="nickname">Nickname:</label>
       <div>
         <input formControlName="nickname" id="nickname" type="text" placeholder="Nickname">
-        <div [style.opacity]="getAlertOpacity('nickname')" class="invalid-alert">Nickname is not valid</div>
+        <div [style.opacity]="getAlertOpacity('nickname')" class="invalid-alert">
+          Nickname should contain only english characters numbers and character -
+        </div>
       </div>
 
       <label for="phone-number">Phone Number:</label>
       <div>
         <input formControlName="phoneNumber" id="phone-number" type="tel" placeholder="Phone Number">
-        <div [style.opacity]="getAlertOpacity('phoneNumber')" class="invalid-alert">Phone number is not valid</div>
+        <div [style.opacity]="getAlertOpacity('phoneNumber')" class="invalid-alert">
+          Phone Number should always start from +380 then it should contain 9 numbers
+        </div>
       </div>
 
       <label for="website">Website:</label>
