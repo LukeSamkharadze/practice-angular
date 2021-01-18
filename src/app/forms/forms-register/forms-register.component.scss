@@ -19,6 +19,10 @@ $alert-background-color: beige;
     > label {
       margin: 0;
       justify-self: end;
+
+      > span {
+        color: red;
+      }
     }
 
     > div {

@@ -79,14 +79,26 @@ export class FormsRegisterComponent {
     }
   }
 
-  isAlertPermissible(formControlName: string, groupPath?: string[]): boolean {
+  private traverseGroup(groupPath?: string[]): AbstractControl {
     let group: AbstractControl | null | undefined = this.formGroup;
     groupPath?.forEach(o => group = group?.get(o));
+
+    return group;
+  }
+
+  isAlertPermissible(formControlName: string, groupPath?: string[]): boolean {
+    let group = this.traverseGroup(groupPath);
 
     return Boolean(group?.get(formControlName)?.invalid &&
       (group?.get(formControlName)?.touched ||
         !group?.get(formControlName)?.pristine));
   }
+
+  isValid(formControlName: string, groupPath?: string[]): boolean {
+    let group = this.traverseGroup(groupPath);
+    return Boolean(group?.get(formControlName)?.invalid);
+  }
+
   getAlertOpacity(formControlName: string, groupPath?: string[]): number {
     console.log(Number(this.isAlertPermissible(formControlName, groupPath)) * 100);
     return Number(this.isAlertPermissible(formControlName, groupPath)) * 100;
