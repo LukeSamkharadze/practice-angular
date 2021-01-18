@@ -23,7 +23,8 @@ export class FormsUsersListComponent {
   }
 
   onUserDeleteClicked(user: User) {
-    this.usersService.removeUser(user.email);
+    if (window.confirm("Are you sure? This action is irreversible"))
+      this.usersService.removeUser(user.email);
   }
 
   getUserMenuOpacity(user: User): number {
