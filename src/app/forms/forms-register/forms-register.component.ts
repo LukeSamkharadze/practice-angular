@@ -1,6 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditUserService } from '../edit-user.service';
+import { User } from '../user';
 import { UsersService } from '../users.service';
 import { ValidatorService } from '../validator.service';
 
@@ -13,7 +14,7 @@ export class FormsRegisterComponent {
   constructor(
     private validatorService: ValidatorService,
     private usersService: UsersService,
-    private userEditService: EditUserService) { }
+    private editUserService: EditUserService) { }
 
   @Input() isEditing: boolean = false;
 
@@ -33,47 +34,37 @@ export class FormsRegisterComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['isEditing'].currentValue) {
       this.formGroup.patchValue({
-        "email": this.userEditService.getUser()?.email,
+        "email": this.editUserService.getUser()?.email,
         "passwordGroup": {
-          "password": this.userEditService.getUser()?.password,
-          "confirmPassword": this.userEditService.getUser()?.password,
+          "password": this.editUserService.getUser()?.password,
+          "confirmPassword": this.editUserService.getUser()?.password,
         },
-        "nickname": this.userEditService.getUser()?.nickname,
-        "phoneNumber": this.userEditService.getUser()?.phoneNumber,
-        "website": this.userEditService.getUser()?.website,
+        "nickname": this.editUserService.getUser()?.nickname,
+        "phoneNumber": this.editUserService.getUser()?.phoneNumber,
+        "website": this.editUserService.getUser()?.website,
         "agreement": true
       })
     }
   }
 
+  getSubmittedFields(): User {
+    return {
+      email: this.formGroup.value.email,
+      password: this.formGroup.value.passwordGroup?.password,
+      nickname: this.formGroup.value.nickname,
+      phoneNumber: this.formGroup.value.phoneNumber,
+      website: this.formGroup.value.website,
+    };
+  }
+
   onSubmit() {
     if (this.formGroup.valid) {
-      let editingUser = this.userEditService.getUser();
-      if (this.isEditing && editingUser !== undefined) {
-
-        [editingUser.email,
-        editingUser.password,
-        editingUser.nickname,
-        editingUser.phoneNumber,
-        editingUser.website,
-        ] = [
-            this.formGroup.value.email,
-            this.formGroup.value.passwordGroup?.password,
-            this.formGroup.value.nickname,
-            this.formGroup.value.phoneNumber,
-            this.formGroup.value.website
-          ];
-
-        this.userEditService.stopEditing();
+      if (this.isEditing) {
+        this.editUserService.editUser(this.getSubmittedFields());
+        this.editUserService.stopEditing();
       }
       else
-        this.usersService.addUser({
-          email: this.formGroup.value.email,
-          password: this.formGroup.value.passwordGroup?.password,
-          nickname: this.formGroup.value.nickname,
-          phoneNumber: this.formGroup.value.phoneNumber,
-          website: this.formGroup.value.website,
-        });
+        this.usersService.addUser(this.getSubmittedFields());
 
       this.formGroup.reset();
     }

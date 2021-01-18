@@ -18,6 +18,13 @@ export class EditUserService {
     this.user = undefined;
   }
 
+  editUser(updatedUserInfo: User) {
+    let key: keyof User;
+    if (this.user)
+      for (key in updatedUserInfo)
+        this.user[key] = updatedUserInfo[key];
+  }
+
   getUser(): User | undefined {
     return this.user;
   }
