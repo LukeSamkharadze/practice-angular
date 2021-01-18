@@ -10,7 +10,7 @@ $alert-background-color: beige;
   > .container {
     display: grid;
     grid-template-columns: auto 1fr;
-    row-gap: 30px;
+    row-gap: 33px;
     column-gap: 10px;
     align-items: center;
     text-align: end;
@@ -19,6 +19,7 @@ $alert-background-color: beige;
     > label {
       margin: 0;
       justify-self: end;
+      font-weight: 700;
 
       > span {
         color: red;
@@ -31,7 +32,7 @@ $alert-background-color: beige;
       > input {
         width: 100%;
         height: 35px;
-        border: 2px solid rgba(128, 128, 128, 0.25);
+        border: 1.75px solid rgba(128, 128, 128, 0.25);
         border-radius: 5px;
         padding: 0 10px;
       }
@@ -69,6 +70,9 @@ $alert-background-color: beige;
 
       > input {
         all: revert;
+        height: 15px;
+        width: 15px;
+        margin-left: -2px;
       }
 
       > label {
@@ -87,6 +91,9 @@ $alert-background-color: beige;
       color: white;
       border: none;
       letter-spacing: 1px;
+      width: 90px;
+      height: 35px;
+      font-size: 14px;
     }
 
     > button:disabled,
