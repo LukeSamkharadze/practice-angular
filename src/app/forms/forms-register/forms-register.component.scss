@@ -84,13 +84,9 @@ $alert-background-color: beige;
 
     > button {
       justify-self: start;
-      padding: 5px 20px;
       color: white;
-      background-color: CornflowerBlue;
       border: none;
-      border-radius: 5px;
       letter-spacing: 1px;
-      box-shadow: 2px 2px 2px 1px hsla(0, 0%, 0%, 0.5);
     }
 
     > button:disabled,
