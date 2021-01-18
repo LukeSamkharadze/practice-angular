@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { User } from '../user';
-import { UsersService } from '../users.service';
+import { User } from '../models/user';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-forms-users-list',

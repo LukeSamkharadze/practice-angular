@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { EditUserService } from './edit-user.service';
-import { User } from './user';
+import { EditUserService } from './services/edit-user.service';
+import { User } from './models/user';
 
 type ComponentType = "register" | "list";
 

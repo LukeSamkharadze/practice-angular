@@ -1,9 +1,9 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { EditUserService } from '../edit-user.service';
-import { User } from '../user';
-import { UsersService } from '../users.service';
-import { ValidatorService } from '../validator.service';
+import { EditUserService } from '../services/edit-user.service';
+import { User } from '../models/user';
+import { UsersService } from '../services/users.service';
+import { ValidatorService } from '../services/validator.service';
 
 @Component({
   selector: 'app-forms-register',
