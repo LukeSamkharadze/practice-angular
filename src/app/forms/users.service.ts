@@ -7,17 +7,17 @@ import { User } from './user';
 export class UsersService {
   public users: User[] = [
     {
-      email: "samkharadze",
-      password: "aeae",
+      email: "samkharadze@mail.ru",
+      password: "123456789",
       nickname: "averagewhale",
-      phoneNumber: "595",
+      phoneNumber: "+380123456789",
       website: "www.odnoklasniki.com"
     },
     {
-      email: "lsamk19",
-      password: "zd",
-      nickname: "luka",
-      phoneNumber: "59555555555",
+      email: "lsamk19@gmail.com",
+      password: "123456789123456789",
+      nickname: "luke",
+      phoneNumber: "+380987654321",
       website: "www.facebook.com"
     }
   ]

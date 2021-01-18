@@ -47,16 +47,35 @@ export class FormsRegisterComponent {
   }
 
   onSubmit() {
-    console.log(this.formGroup.get("agreement"));
-    this.userEditService.stopEditing();
     if (this.formGroup.valid) {
-      this.usersService.addUser({
-        email: this.formGroup.value.email,
-        password: this.formGroup.value.passwordGroup?.password,
-        nickname: this.formGroup.value.nickname,
-        phoneNumber: this.formGroup.value.phoneNumber,
-        website: this.formGroup.value.website,
-      })
+      let editingUser = this.userEditService.getUser();
+      if (this.isEditing && editingUser !== undefined) {
+
+        [editingUser.email,
+        editingUser.password,
+        editingUser.nickname,
+        editingUser.phoneNumber,
+        editingUser.website,
+        ] = [
+            this.formGroup.value.email,
+            this.formGroup.value.passwordGroup?.password,
+            this.formGroup.value.nickname,
+            this.formGroup.value.phoneNumber,
+            this.formGroup.value.website
+          ];
+
+        this.userEditService.stopEditing();
+      }
+      else
+        this.usersService.addUser({
+          email: this.formGroup.value.email,
+          password: this.formGroup.value.passwordGroup?.password,
+          nickname: this.formGroup.value.nickname,
+          phoneNumber: this.formGroup.value.phoneNumber,
+          website: this.formGroup.value.website,
+        });
+
+      this.formGroup.reset();
     }
   }
 

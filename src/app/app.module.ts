@@ -7,17 +7,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormsComponent } from './forms/forms.component';
 import { FormsRegisterComponent } from './forms/forms-register/forms-register.component';
 import { FormsUsersListComponent } from './forms/forms-users-list/forms-users-list.component';
-import { FormsEditComponent } from './forms/forms-edit/forms-edit.component';
-import { FormsRemoveComponent } from './forms/forms-remove/forms-remove.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormsComponent,
     FormsRegisterComponent,
-    FormsUsersListComponent,
-    FormsEditComponent,
-    FormsRemoveComponent
+    FormsUsersListComponent
   ],
   imports: [
     BrowserModule,
