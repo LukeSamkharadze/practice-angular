@@ -5,14 +5,14 @@
       <label for="email">E-mail:</label>
       <div>
         <input formControlName="email" id="email" type="email" placeholder="E-mail">
-        <div [style.opacity]="getAlertOpacity('email')" class="invalid-alert">Email is not valid</div>
+        <div *ngIf="isAlertPermissible('email')" class="invalid-alert">Email is not valid</div>
       </div>
 
       <ng-container formGroupName="passwordGroup">
         <label for="password">Password:</label>
         <div>
           <input formControlName="password" id="password" type="password" placeholder="Password">
-          <div [style.opacity]="getAlertOpacity('password', ['passwordGroup'])" class="invalid-alert">
+          <div *ngIf="isAlertPermissible('password', ['passwordGroup'])" class="invalid-alert">
             Password should be more than 7 characters and contain only english alphabet and numbers
           </div>
         </div>
@@ -20,14 +20,14 @@
         <label for="confirm-password">Confirm Password:</label>
         <div>
           <input formControlName="confirmPassword" id="confirm-password" type="password" placeholder="Confirm Password">
-          <div [style.opacity]="getAlertOpacity('passwordGroup')" class="invalid-alert">Password did not match</div>
+          <div *ngIf="isAlertPermissible('passwordGroup')" class="invalid-alert">Password did not match</div>
         </div>
       </ng-container>
 
       <label for="nickname">Nickname:</label>
       <div>
         <input formControlName="nickname" id="nickname" type="text" placeholder="Nickname">
-        <div [style.opacity]="getAlertOpacity('nickname')" class="invalid-alert">
+        <div *ngIf="isAlertPermissible('nickname')" class="invalid-alert">
           Nickname should contain only english characters numbers and character -
         </div>
       </div>
@@ -35,7 +35,7 @@
       <label for="phone-number">Phone Number:</label>
       <div>
         <input formControlName="phoneNumber" id="phone-number" type="tel" placeholder="Phone Number">
-        <div [style.opacity]="getAlertOpacity('phoneNumber')" class="invalid-alert">
+        <div *ngIf="isAlertPermissible('phoneNumber')" class="invalid-alert">
           Phone Number should always start from +380 then it should contain 9 numbers
         </div>
       </div>
@@ -43,19 +43,20 @@
       <label for="website">Website:</label>
       <div>
         <input formControlName="website" id="website" type="url" placeholder="Website">
-        <div [style.opacity]="getAlertOpacity('website')" class="invalid-alert">Website is not valid</div>
+        <div *ngIf="isAlertPermissible('website')" class="invalid-alert">Website is not valid</div>
       </div>
 
-      <div></div>
-      <div class="agreement">
-        <input formControlName="agreement" id="agreement" type="checkbox" required>
-        <label for="agreement">&nbsp;I have read the <a href="">agreement</a></label>
-        <div [style.opacity]="getAlertOpacity('agreement')" class="invalid-alert">You must agree to the agreement</div>
-      </div>
+      <ng-container *ngIf="!isEditing">
+        <div></div>
+        <div class="agreement">
+          <input formControlName="agreement" id="agreement" type="checkbox" required>
+          <label for="agreement">&nbsp;I have read the <a href="">agreement</a></label>
+          <div *ngIf="isAlertPermissible('agreement')" class="invalid-alert">You must agree to the agreement</div>
+        </div>
+      </ng-container>
 
       <div></div>
-      <!-- <button [disabled]="!formGroup.valid" type="submit">Register</button> -->
-      <button type="submit">Register</button>
+      <button [disabled]="!formGroup.valid" type="submit">{{isEditing? 'Edit' : 'Register'}}</button>
     </div>
   </div>
 </form>

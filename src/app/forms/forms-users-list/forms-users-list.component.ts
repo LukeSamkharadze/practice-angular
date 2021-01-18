@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { User } from '../user';
 import { UsersService } from '../users.service';
 
@@ -10,13 +10,19 @@ import { UsersService } from '../users.service';
 export class FormsUsersListComponent {
   activeUser: User | null = null;
 
+  @Output() userEditClick = new EventEmitter<User>();
+
   constructor(public usersService: UsersService) { }
 
   onUserClicked(user: User) {
     this.activeUser = user;
   }
 
-  onUserDelete(user: User) {
+  onUserEditClicked(user: User) {
+    this.userEditClick.emit(user);
+  }
+
+  onUserDeleteClicked(user: User) {
     this.usersService.removeUser(user.email);
   }
 

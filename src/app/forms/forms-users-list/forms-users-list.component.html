@@ -15,11 +15,11 @@
     </div>
 
     <div [style.opacity]="getUserMenuOpacity(user)" class="edit-menu">
-      <button class="btn btn-primary">
+      <button class="btn btn-primary" (click)="onUserEditClicked(user)">
         <i class="fas fa-user-edit"></i>
       </button>
 
-      <button class="btn btn-danger" (click)="onUserDelete(user)">
+      <button class="btn btn-danger" (click)="onUserDeleteClicked(user)">
         <i class="fas fa-user-slash"></i>
       </button>
     </div>

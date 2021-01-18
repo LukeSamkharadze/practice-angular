@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EditUserService } from '../edit-user.service';
 import { UsersService } from '../users.service';
 import { ValidatorService } from '../validator.service';
 
@@ -11,7 +12,10 @@ import { ValidatorService } from '../validator.service';
 export class FormsRegisterComponent {
   constructor(
     private validatorService: ValidatorService,
-    private usersService: UsersService) { }
+    private usersService: UsersService,
+    private userEditService: EditUserService) { }
+
+  @Input() isEditing: boolean = false;
 
   formGroup = new FormGroup({
     email: new FormControl("", [Validators.required, this.validatorService.email]),
@@ -25,7 +29,26 @@ export class FormsRegisterComponent {
     agreement: new FormControl("", [Validators.required]),
   });
 
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['isEditing'].currentValue) {
+      this.formGroup.patchValue({
+        "email": this.userEditService.getUser()?.email,
+        "passwordGroup": {
+          "password": this.userEditService.getUser()?.password,
+          "confirmPassword": this.userEditService.getUser()?.password,
+        },
+        "nickname": this.userEditService.getUser()?.nickname,
+        "phoneNumber": this.userEditService.getUser()?.phoneNumber,
+        "website": this.userEditService.getUser()?.website,
+        "agreement": true
+      })
+    }
+  }
+
   onSubmit() {
+    console.log(this.formGroup.get("agreement"));
+    this.userEditService.stopEditing();
     if (this.formGroup.valid) {
       this.usersService.addUser({
         email: this.formGroup.value.email,
@@ -37,7 +60,7 @@ export class FormsRegisterComponent {
     }
   }
 
-  private isAlertPermissible(formControlName: string, groupPath?: string[]): boolean {
+  isAlertPermissible(formControlName: string, groupPath?: string[]): boolean {
     let group: AbstractControl | null | undefined = this.formGroup;
     groupPath?.forEach(o => group = group?.get(o));
 
@@ -46,6 +69,7 @@ export class FormsRegisterComponent {
         !group?.get(formControlName)?.pristine));
   }
   getAlertOpacity(formControlName: string, groupPath?: string[]): number {
+    console.log(Number(this.isAlertPermissible(formControlName, groupPath)) * 100);
     return Number(this.isAlertPermissible(formControlName, groupPath)) * 100;
   }
 }

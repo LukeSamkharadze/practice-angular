@@ -1,9 +1,11 @@
 <div class="main-container">
+
   <div class="button-container">
     <button class="btn btn-{{current==='register'? 'primary' : 'secondary'}}"
-      (click)="current='register'">Register</button>
+      (click)="current='register'">{{editUserService.isEditing? 'Edit' : 'Register'}}</button>
     <button class="btn btn-{{current==='list'? 'primary' : 'secondary'}}" (click)="current='list'">List</button>
   </div>
-  <app-forms-register *ngIf="current === 'register'"></app-forms-register>
-  <app-forms-users-list *ngIf="current === 'list'"></app-forms-users-list>
+
+  <app-forms-register *ngIf="current === 'register'" [isEditing] = "editUserService.isEditing"></app-forms-register>
+  <app-forms-users-list *ngIf="current === 'list'" (userEditClick)="onUserEditClicked($event)"></app-forms-users-list>
 </div>
