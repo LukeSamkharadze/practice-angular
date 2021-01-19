@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UsersManagmentModule } from './users-managment/users-managment.module';
-import { CurrencyConverterComponent } from './curreny-converter/currency-converter.component';
-import { CurrencyConverterModule } from './curreny-converter/currency-converter.module';
+import { CurrencyConverterModule } from './currency-converter/currency-converter.module';
 
 @NgModule({
   declarations: [
