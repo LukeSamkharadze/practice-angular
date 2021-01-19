@@ -6,6 +6,6 @@
     <button class="btn btn-{{current==='list'? 'primary' : 'secondary'}}" (click)="current='list'">List</button>
   </div>
 
-  <app-forms-register *ngIf="current === 'register'" [isEditing] = "editUserService.isEditing"></app-forms-register>
+  <app-forms-register *ngIf="current === 'register'" [isEditing]="editUserService.isEditing"></app-forms-register>
   <app-forms-users-list *ngIf="current === 'list'" (userEditClick)="onUserEditClicked($event)"></app-forms-users-list>
 </div>

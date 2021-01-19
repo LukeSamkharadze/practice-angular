@@ -1,1 +1,18 @@
-<app-forms></app-forms>
+<div class="main-container">
+
+  <div class="button-container">
+    <button class="btn btn-{{current==='users-managment'? 'primary' : 'secondary'}}" (click)="current='users-managment'">
+      Users Managment
+    </button>
+
+    <button class="btn btn-{{current==='currency-converter'? 'primary' : 'secondary'}}" (click)="current='currency-converter'">
+      Currency Exchanger
+    </button>
+  </div>
+
+  <app-forms *ngIf="current === 'users-managment'">
+  </app-forms>
+
+  <app-currency-converter *ngIf="current === 'currency-converter'">
+  </app-currency-converter>
+</div>
