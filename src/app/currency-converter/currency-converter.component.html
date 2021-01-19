@@ -1,0 +1,23 @@
+<form [formGroup]="formGroup">
+
+  <div>
+    <select>
+      <option *ngFor="let currency of currencies">{{currency}}</option>
+    </select>
+
+    <input type="number">
+  </div>
+
+  <div formArrayName="optional">
+    <div *ngFor="let inputForm of getAddedControls()">
+      <select>
+        <option *ngFor="let currency of currencies">{{currency}}</option>
+      </select>
+
+      <input type="number">
+    </div>
+  </div>
+
+
+  <button class="btn btn-primary" (click)="addNewCurrency()">add new</button>
+</form>
