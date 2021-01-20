@@ -2,7 +2,8 @@ import { CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { Observable, Observer, Subject } from 'rxjs';
+import { promise } from 'protractor';
+import { forkJoin, Observable, Observer, of, Subject } from 'rxjs';
 import { Currency } from './models/currencies';
 import { Rate } from './models/rate';
 import { Rates } from './models/rates';
@@ -70,33 +71,26 @@ export class CurrencyConverterComponent {
   }
 
   fromsChanged() {
-    let result = 0;
-    let requsetToChangeToInput = new Subject<number>();
+    let observables = Array
+      .apply(null, Array((this.froms.controls.length)))
+      .map((control, index) => this.getCurrencyRateObservable<Rate>(this.getFrom("currency", index).value, this.getTo("currency").value))
 
-    requsetToChangeToInput.subscribe(() => {
-      console.log("request done");
+    forkJoin(observables).subscribe(results => {
+      let result = results
+        .map((rate, index) => this.getFrom("input", index).value * rate.rates[this.getTo("currency").value as Currency]!)
+        .reduce((acc, curr) => acc + curr);
+
       this.getTo("input").setValue(result.toFixed(2), { emitEvent: false });
-      this.oldToValues.input = this.getTo("input").value;
-      requsetToChangeToInput.complete();
+      this.oldToValues.input = result;
     });
-
-    for (let i = 0; i < this.froms.controls.length; i++) {
-      this.getCurrencyRateObservable<Rate>(this.getFrom("currency", i).value, this.getTo("currency").value)
-        .subscribe((rate: Rate) => {
-          result += this.getFrom("input", i).value * rate.rates[this.getTo("currency").value as Currency]!;
-          if (i === this.froms.controls.length - 1)
-            requsetToChangeToInput.next();
-        });
-    }
-
   }
 
   toChanged() {
     if (this.froms.controls.length == 1) {
       this.getCurrencyRateObservable<Rate>(this.getTo("currency").value, this.getFrom("currency", 0).value)
-        .subscribe((rate: Rate) => {
-          this.getFrom("input", 0).setValue((this.getTo("input").value * rate.rates[this.getFrom("currency", 0).value as Currency]!).toFixed(2), { emitEvent: false });
-        });
+        .subscribe((rate: Rate) =>
+          this.getFrom("input", 0).setValue((this.getTo("input").value * rate.rates[this.getFrom("currency", 0).value as Currency]!).toFixed(2), { emitEvent: false })
+        );
     }
     else {
       let scale = 1;
