@@ -1,11 +1,13 @@
-<button class="btn btn-primary" (click)="addNewCurrency()">add new</button>
+<div class="main-container">
+  <div class="buttons-container">
+    <button class="btn btn-primary" (click)="addNewCurrency()">Add</button>
+  </div>
 
-<form [formGroup]="formGroup">
-  <div class="container">
+  <form [formGroup]="formGroup" class="forms-container">
 
-    <div formArrayName="froms">
+    <div formArrayName="froms" class="froms-container">
       <div *ngFor="let inputForm of froms.controls; let i=index">
-        <div [formGroupName]="i">
+        <div [formGroupName]="i" class="currency-input-container">
           <select formControlName="currency" class="form-control">
             <option *ngFor="let currency of currencies">{{currency}}</option>
           </select>
@@ -15,13 +17,14 @@
       </div>
     </div>
 
-    <div formGroupName="to">
+    <div formGroupName="to" class="currency-input-container">
+      <input formControlName="input" type="number" class="form-control" placeholder="0.00">
+
       <select formControlName="currency" class="form-control">
         <option *ngFor="let currency of currencies">{{currency}}</option>
       </select>
 
-      <input formControlName="input" type="number" class="form-control" placeholder="0.00">
     </div>
 
-  </div>
-</form>
+  </form>
+</div>

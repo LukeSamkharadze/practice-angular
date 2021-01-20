@@ -1,6 +1,31 @@
-.container
-{
+.main-container {
   display: flex;
-  max-width: 45%;
-  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+
+  .buttons-container {
+  }
+
+  .forms-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+
+    .froms-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .currency-input-container {
+      display: flex;
+      gap: 10px;
+
+      > select {
+        border: none;
+        width: 125px;
+      }
+    }
+  }
 }
