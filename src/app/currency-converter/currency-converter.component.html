@@ -6,21 +6,21 @@
     <div formArrayName="froms">
       <div *ngFor="let inputForm of froms.controls; let i=index">
         <div [formGroupName]="i">
-          <select formControlName="currency">
+          <select formControlName="currency" class="form-control">
             <option *ngFor="let currency of currencies">{{currency}}</option>
           </select>
 
-          <input formControlName="input" type="number">
+          <input formControlName="input" type="number" class="form-control">
         </div>
       </div>
     </div>
 
     <div formGroupName="to">
-      <select formControlName="currency">
+      <select formControlName="currency" class="form-control">
         <option *ngFor="let currency of currencies">{{currency}}</option>
       </select>
 
-      <input formControlName="input" type="number">
+      <input formControlName="input" type="number" class="form-control">
     </div>
 
   </div>
