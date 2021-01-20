@@ -15,16 +15,12 @@ import { Rates } from './models/rates';
 })
 export class CurrencyConverterComponent {
   private readonly apiBaseURL = "https://api.exchangeratesapi.io/latest"
-
-  currencies: string[] = [];
-
-  chachedRates: number[] = [1];
-
   private oldToValues = {
     input: 0,
     currency: "CAD",
   }
 
+  currencies: string[] = [];
   formGroup: FormGroup = new FormGroup({
     froms: new FormArray([
       new FormGroup({
@@ -57,20 +53,20 @@ export class CurrencyConverterComponent {
 
   constructor(private httpClient: HttpClient) {
     this.listenToChanges();
-
-    httpClient.get<Rates>(this.apiBaseURL).subscribe((rates: Rates) => this.handleRates(rates));
-  }
-
-  listenToChanges() {
-    this.froms.valueChanges.subscribe(this.fromsChanged.bind(this));
-    this.toGroup.valueChanges.subscribe(this.toChanged.bind(this));
+    this.makeRequestOnAllRates();
   }
 
   private getCurrencyRateObservable<T>(from: Currency, to: Currency) {
     return this.httpClient.get<T>(`${this.apiBaseURL}?base=${from}&symbols=${to}`)
   }
 
-  fromsChanged() {
+  private listenToChanges() {
+    this.froms.valueChanges.subscribe(this.fromsChanged.bind(this));
+    this.toGroup.valueChanges.subscribe(this.toChanged.bind(this));
+  }
+
+
+  private fromsChanged() {
     let observables = Array
       .apply(null, Array((this.froms.controls.length)))
       .map((control, index) => this.getCurrencyRateObservable<Rate>(this.getFrom("currency", index).value, this.getTo("currency").value))
@@ -85,7 +81,7 @@ export class CurrencyConverterComponent {
     });
   }
 
-  toChanged() {
+  private toChanged() {
     if (this.froms.controls.length == 1) {
       this.getCurrencyRateObservable<Rate>(this.getTo("currency").value, this.getFrom("currency", 0).value)
         .subscribe((rate: Rate) =>
@@ -109,19 +105,21 @@ export class CurrencyConverterComponent {
     this.oldToValues.currency = this.getTo("currency").value;
   }
 
-  handleRates(rates: Rates) {
-    for (let currencyName in rates.rates)
-      this.currencies.push(currencyName);
+  private makeRequestOnAllRates() {
+    this.httpClient.get<Rates>(this.apiBaseURL).subscribe((rates: Rates) => {
+      for (let currencyName in rates.rates)
+        this.currencies.push(currencyName);
+    });
   }
 
-  addNewCurrency() {
+  public addNewCurrency() {
     this.froms.push(new FormGroup({
       currency: new FormControl("CAD"),
       input: new FormControl(""),
     }));
   }
 
-  removeLastCurrency() {
+  public removeLastCurrency() {
     this.froms.controls.pop();
     this.fromsChanged();
   }
