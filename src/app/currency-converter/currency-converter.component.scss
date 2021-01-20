@@ -5,6 +5,8 @@
   gap: 50px;
 
   .buttons-container {
+    display: flex;
+    gap: 10px;
   }
 
   .forms-container {
@@ -24,7 +26,8 @@
 
       > select {
         border: none;
-        width: 125px;
+        width: 100px;
+        -webkit-appearance: none;
       }
     }
   }

@@ -117,4 +117,8 @@ export class CurrencyConverterComponent {
       input: new FormControl(""),
     }));
   }
+
+  removeLastCurrency() {
+    this.froms.controls.pop();
+  }
 }

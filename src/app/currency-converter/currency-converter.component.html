@@ -1,6 +1,7 @@
 <div class="main-container">
   <div class="buttons-container">
     <button class="btn btn-primary" (click)="addNewCurrency()">Add</button>
+    <button class="btn btn-danger" (click)="removeLastCurrency()" [disabled]="froms.controls.length<2">Remove</button>
   </div>
 
   <form [formGroup]="formGroup" class="forms-container">
