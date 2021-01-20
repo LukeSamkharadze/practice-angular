@@ -1,23 +1,27 @@
+<button class="btn btn-primary" (click)="addNewCurrency()">add new</button>
+
 <form [formGroup]="formGroup">
+  <div class="container">
 
-  <div>
-    <select>
-      <option *ngFor="let currency of currencies">{{currency}}</option>
-    </select>
+    <div formArrayName="froms">
+      <div *ngFor="let inputForm of froms.controls; let i=index">
+        <div [formGroupName]="i">
+          <select formControlName="currency">
+            <option *ngFor="let currency of currencies">{{currency}}</option>
+          </select>
 
-    <input type="number">
-  </div>
+          <input formControlName="input" type="number">
+        </div>
+      </div>
+    </div>
 
-  <div formArrayName="optional">
-    <div *ngFor="let inputForm of getAddedControls()">
-      <select>
+    <div formGroupName="to">
+      <select formControlName="currency">
         <option *ngFor="let currency of currencies">{{currency}}</option>
       </select>
 
-      <input type="number">
+      <input formControlName="input" type="number">
     </div>
+
   </div>
-
-
-  <button class="btn btn-primary" (click)="addNewCurrency()">add new</button>
 </form>
