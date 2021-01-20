@@ -73,6 +73,13 @@ export class CurrencyConverterComponent {
     let result = 0;
     let requsetToChangeToInput = new Subject<number>();
 
+    requsetToChangeToInput.subscribe(() => {
+      console.log("request done");
+      this.getTo("input").setValue(result.toFixed(2), { emitEvent: false });
+      this.oldToValues.input = this.getTo("input").value;
+      requsetToChangeToInput.complete();
+    });
+
     for (let i = 0; i < this.froms.controls.length; i++) {
       this.getCurrencyRateObservable<Rate>(this.getFrom("currency", i).value, this.getTo("currency").value)
         .subscribe((rate: Rate) => {
@@ -82,11 +89,6 @@ export class CurrencyConverterComponent {
         });
     }
 
-    requsetToChangeToInput.subscribe(() => {
-      this.getTo("input").setValue(result.toFixed(2), { emitEvent: false });
-      this.oldToValues.input = this.getTo("input").value;
-      requsetToChangeToInput.complete();
-    });
   }
 
   toChanged() {
