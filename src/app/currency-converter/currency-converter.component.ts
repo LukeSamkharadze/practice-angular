@@ -28,7 +28,10 @@ export class CurrencyConverterComponent {
   })
 
   chachedRates: number[] = [1];
-  oldToInputValue: number = 0;
+  oldToValues = {
+    input: 0,
+    currency: "CAD",
+  }
 
   getFrom(type: "currency" | "input", index: number) {
     return this.formGroup.get("froms")!.get(index.toString())?.get(type) as FormControl;
@@ -55,9 +58,6 @@ export class CurrencyConverterComponent {
   listenToChanges() {
     this.froms.valueChanges.subscribe(this.fromsChanged.bind(this));
     this.toGroup.valueChanges.subscribe(this.toChanged.bind(this));
-    // this.fromCurrency.valueChanges.subscribe(this.fromCurrencyChanged.bind(this));
-    // this.toInput.valueChanges.subscribe(this.toInputChanged.bind(this));
-    // this.toCurrency.valueChanges.subscribe(this.toCurrencyChanged.bind(this));
   }
 
   fromsChanged() {
@@ -75,11 +75,9 @@ export class CurrencyConverterComponent {
 
     requsetToChangeToInput.subscribe(() => {
       this.getTo("input").setValue(result.toFixed(2), { emitEvent: false });
-      this.oldToInputValue = this.getTo("input").value;
+      this.oldToValues.input = this.getTo("input").value;
       requsetToChangeToInput.complete();
     });
-
-    // this.toInput.setValue((this.fromInput.value * this.chachedFromToRate).toFixed(2), { emitEvent: false });
   }
 
   toChanged() {
@@ -90,41 +88,23 @@ export class CurrencyConverterComponent {
         });
     }
     else {
-      let scale = 0;
-      console.log("multiple");
-      if (this.oldToInputValue != 0) {
-        scale = this.getTo("input").value / this.oldToInputValue;
+      let scale = 1;
+      if (this.oldToValues.currency !== this.getTo("currency").value) {
+        this.httpClient.get(`https://api.exchangeratesapi.io/latest?base=${this.oldToValues.currency}&symbols=${this.getTo("currency").value}`)
+          .subscribe((response: any) => {
+            scale = response.rates[this.getTo("currency").value];
+          });
+      }
+      if (this.oldToValues.input != 0) {
+        scale *= this.getTo("input").value / this.oldToValues.input;
         for (let i = 0; i < this.froms.controls.length; i++)
           this.getFrom("input", i).setValue((this.getFrom("input", i).value * scale).toFixed(2), { emitEvent: false });
       }
     }
 
-    this.oldToInputValue = this.getTo("input").value;
+    this.oldToValues.input = this.getTo("input").value;
+    this.oldToValues.currency = this.getTo("currency").value;
   }
-
-  // fromCurrencyChanged(value: any) {
-  //   this.currentCurrencyObservable = this.httpClient.get(`https://api.exchangeratesapi.io/latest?base=${this.fromCurrency.value}&symbols=${this.toCurrency.value}`);
-  //   this.currentCurrencyObservable.subscribe((response: any) => {
-  //     this.chachedFromToRate = response.rates[this.toCurrency.value];
-  //     this.fromInputChanged(this.fromInput.value)
-  //   });
-  // }
-
-  // fromInputChanged(value: any) {
-  //   this.toInput.setValue((this.fromInput.value * this.chachedFromToRate).toFixed(2), { emitEvent: false });
-  // }
-
-  // toInputChanged() {
-  //   this.fromInput.setValue((this.toInput.value / this.chachedFromToRate).toFixed(2), { emitEvent: false });
-  // }
-
-  // toCurrencyChanged() {
-  //   this.currentCurrencyObservable = this.httpClient.get(`https://api.exchangeratesapi.io/latest?base=${this.fromCurrency.value}&symbols=${this.toCurrency.value}`);
-  //   this.currentCurrencyObservable.subscribe((response: any) => {
-  //     this.chachedFromToRate = response.rates[this.toCurrency.value];
-  //     this.fromInputChanged(this.fromInput.value)
-  //   });
-  // }
 
   handleRates(response: any) {
     for (let currencyName in response.rates)
