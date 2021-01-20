@@ -1,10 +1,9 @@
-import { from } from "rxjs"
 import { Currency } from "./currencies";
 
-export interface Rates {
+export interface Rate {
   base: Currency,
   date: Date,
   rates: {
-    [key in Currency]: number
+    [key in Currency]?: number;
   }
 }

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
-import { reduce, subscribeOn } from 'rxjs/operators';
-
-import * as CurrenciesResponse from "./models/rates";
+import { Component } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { Currency } from './models/currencies';
+import { Rate } from './models/rate';
+import { Rates } from './models/rates';
 
 @Component({
   selector: 'app-currency-converter',
@@ -52,7 +52,7 @@ export class CurrencyConverterComponent {
   constructor(private httpClient: HttpClient) {
     this.listenToChanges();
 
-    httpClient.get("https://api.exchangeratesapi.io/latest").subscribe(o => this.handleRates(o));
+    httpClient.get<Rates>("https://api.exchangeratesapi.io/latest").subscribe((rates: Rates) => this.handleRates(rates));
   }
 
   listenToChanges() {
@@ -66,8 +66,8 @@ export class CurrencyConverterComponent {
 
     for (let i = 0; i < this.froms.controls.length; i++) {
       this.httpClient.get(`https://api.exchangeratesapi.io/latest?base=${this.getFrom("currency", i).value}&symbols=${this.getTo("currency").value}`)
-        .subscribe((response: any) => {
-          result += this.getFrom("input", i).value * response.rates[this.getTo("currency").value];
+        .subscribe((rate: any) => {
+          result += this.getFrom("input", i).value * rate.rates[this.getTo("currency").value];
           if (i === this.froms.controls.length - 1)
             requsetToChangeToInput.next();
         });
@@ -82,17 +82,21 @@ export class CurrencyConverterComponent {
 
   toChanged() {
     if (this.froms.controls.length == 1) {
-      this.httpClient.get(`https://api.exchangeratesapi.io/latest?base=${this.getTo("currency").value}&symbols=${this.getFrom("currency", 0).value}`)
-        .subscribe((response: any) => {
-          this.getFrom("input", 0).setValue((this.getTo("input").value * response.rates[this.getFrom("currency", 0).value]).toFixed(2), { emitEvent: false });
+      this.httpClient.get<Rate>(`https://api.exchangeratesapi.io/latest?base=${this.getTo("currency").value}&symbols=${this.getFrom("currency", 0).value}`)
+        .subscribe((rate: Rate) => {
+          let selectValue: Currency = this.getFrom("currency", 0).value;
+          if (Object.values(Currency).includes(selectValue))
+            this.getFrom("input", 0).setValue((this.getTo("input").value * rate.rates[selectValue]!).toFixed(2), { emitEvent: false });
         });
     }
     else {
       let scale = 1;
       if (this.oldToValues.currency !== this.getTo("currency").value) {
-        this.httpClient.get(`https://api.exchangeratesapi.io/latest?base=${this.oldToValues.currency}&symbols=${this.getTo("currency").value}`)
-          .subscribe((response: any) => {
-            scale = response.rates[this.getTo("currency").value];
+        this.httpClient.get<Rate>(`https://api.exchangeratesapi.io/latest?base=${this.oldToValues.currency}&symbols=${this.getTo("currency").value}`)
+          .subscribe((rate: Rate) => {
+            let selectValue: Currency = this.getTo("currency").value;
+            if (Object.values(Currency).includes(selectValue))
+              scale = rate.rates[selectValue]!;
           });
       }
       if (this.oldToValues.input != 0) {
@@ -106,8 +110,8 @@ export class CurrencyConverterComponent {
     this.oldToValues.currency = this.getTo("currency").value;
   }
 
-  handleRates(response: any) {
-    for (let currencyName in response.rates)
+  handleRates(rates: Rates) {
+    for (let currencyName in rates.rates)
       this.currencies.push(currencyName);
   }
 
@@ -120,5 +124,6 @@ export class CurrencyConverterComponent {
 
   removeLastCurrency() {
     this.froms.controls.pop();
+    this.fromsChanged();
   }
 }
