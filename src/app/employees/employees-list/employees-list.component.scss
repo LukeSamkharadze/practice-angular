@@ -1,3 +1,11 @@
+.buttons-container
+{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 .container {
   display: flex;
   flex-direction: column;

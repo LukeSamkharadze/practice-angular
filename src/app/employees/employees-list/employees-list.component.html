@@ -1,8 +1,14 @@
+<div class="buttons-container">
+  <button (click)="leftClicked()" class="btn btn-primary">🠔</button>
+  <button class="btn btn-secondary" disabled>{{currentPage}}</button>
+  <button (click)="rightClicked()" class="btn btn-primary">➝</button>
+</div>
+
 <div class="container">
-  <div *ngFor="let employee of employees">
-    <div>ID: <span>{{employee.id}}</span></div>
-    <div>NAME: <span>{{employee.name}}</span></div>
-    <div>SALARY: <span>{{employee.salary}}</span></div>
-    <div>AGE: <span>{{employee.age}}</span></div>
+  <div *ngFor="let employee of currentPageEmployees" >
+      <div>ID: <span>{{employee.id}}</span></div>
+      <div>NAME: <span>{{employee.name}}</span></div>
+      <div>SALARY: <span>{{employee.salary}}</span></div>
+      <div>AGE: <span>{{employee.age}}</span></div>
   </div>
 </div>
