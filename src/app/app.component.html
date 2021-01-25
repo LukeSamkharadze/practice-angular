@@ -1,6 +1,22 @@
-<div class="main-container">
+<div class="header">
+  <nav>
+    <a routerLink="/users-component" routerLinkActive="active" class="btn btn-primary">
+      USERS
+    </a>
 
-  <div class="button-container">
+    <a routerLink="/currency-component" routerLinkActive="active" class="btn btn-primary">
+      CURRENCY
+    </a>
+
+    <a routerLink="/employees-component" routerLinkActive="active" class="btn btn-primary">
+      EMPLOYEES
+    </a>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>
+
+<!-- <div class="button-container">
     <button class="btn btn-{{current==='users-managment'? 'primary' : 'secondary'}}"
       (click)="current='users-managment'">
       Users Managment
@@ -23,4 +39,4 @@
   </app-currency-converter>
 
   <app-employees *ngIf="current === 'employees'"></app-employees>
-</div>
+</div> -->

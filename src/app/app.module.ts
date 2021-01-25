@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UsersManagmentModule } from './users-managment/users-managment.module';
-import { CurrencyConverterModule } from './currency-converter/currency-converter.module';
+import { CurrencyConverterModule } from './currency/currency-converter.module';
 import { EmployeesModule } from './employees/employees.module';
+import { UsersManagmentModule } from './users/users-managment.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { EmployeesModule } from './employees/employees.module';
     ReactiveFormsModule,
     UsersManagmentModule,
     CurrencyConverterModule,
-    EmployeesModule
+    EmployeesModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

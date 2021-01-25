@@ -1,14 +1,10 @@
-.main-container
-{
-  padding: 50px;
-  display: flex;
-  gap: 50px;
-  flex-direction: column;
+.header {
+  padding: 20px 0;
+  background-color: rgba(128, 128, 128, 0.5);
 
-  >.button-container
-  {
+  nav {
     display: flex;
-    gap: 10px;
     justify-content: center;
+    gap: 5px;
   }
 }
