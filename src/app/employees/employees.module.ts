@@ -4,7 +4,7 @@ import { RegisterComponent } from './register/register.component';
 import { EmployeesComponent } from './employees.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GetComponent } from './update/update.component';
-import { EmployeesListComponent } from './employees-list/employees-list.component';
+import { EmployeesListComponent } from './list/list.component';
 
 
 

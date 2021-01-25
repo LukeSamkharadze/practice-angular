@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { from } from 'rxjs';
-import { EmployeesService } from '../employees.service';
+import { EmployeesService } from '../../../services/employees.service';
 import { Employee } from '../../../models/employee';
 
 @Component({

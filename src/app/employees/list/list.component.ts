@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeesService } from '../employees.service';
+import { EmployeesService } from '../../../services/employees.service';
 import { Employee } from '../../../models/employee';
 
 @Component({
-  selector: 'app-employees-list',
-  templateUrl: './employees-list.component.html',
-  styleUrls: ['./employees-list.component.scss']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss']
 })
 export class EmployeesListComponent {
   employees: Employee[] = [];

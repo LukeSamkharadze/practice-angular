@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EmployeesService } from '../employees.service';
+import { EmployeesService } from '../../../services/employees.service';
 import { Employee } from '../../../models/employee';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-update',
@@ -40,11 +39,15 @@ export class GetComponent {
 
   onDeleteClicked() {
     this.employeesService.deleteEmployee(this.formGet.value.id).
-      subscribe(o => console.log("egaa", o))
+    subscribe({
+      error: () => window.alert("SOMETHING WENT WRONG")
+    });
   }
 
   onUpdateClicked() {
     this.employeesService.updateEmployee(this.formGet.value.id, this.formUpdate.value).
-    subscribe(o => console.log("egaa", o))
+    subscribe({
+      error: () => window.alert("SOMETHING WENT WRONG")
+    });
   }
 }

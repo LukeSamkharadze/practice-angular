@@ -7,7 +7,8 @@
     <button class="btn btn-{{currentComponent ==='employees'? 'primary' : 'secondary'}}"
       (click)="currentComponent='employees'">Employees</button>
   </div>
+  
   <app-register *ngIf="currentComponent==='register'"></app-register>
   <app-update *ngIf="currentComponent==='update'"></app-update>
-  <app-employees-list *ngIf="currentComponent==='employees'"></app-employees-list>
+  <app-list *ngIf="currentComponent==='employees'"></app-list>
 </div>
