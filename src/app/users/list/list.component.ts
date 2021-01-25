@@ -3,11 +3,11 @@ import { User } from '../../../models/user';
 import { UsersService } from '../../../services/users.service';
 
 @Component({
-  selector: 'app-forms-users-list',
-  templateUrl: './forms-users-list.component.html',
-  styleUrls: ['./forms-users-list.component.scss']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss']
 })
-export class FormsUsersListComponent {
+export class ListComponent {
   activeUser: User | null = null;
 
   @Output() userEditClick = new EventEmitter<User>();

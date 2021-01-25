@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CurrencyConverterComponent } from './currency/currency-converter.component';
+import { CurrencyComponent } from './currency/currency.component';
 import { EmployeesComponent } from './employees/employees.component';
-import { FormsComponent } from './users/forms.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  { path: 'users-component', component: FormsComponent },
-  { path: 'currency-component', component: CurrencyConverterComponent },
+  { path: 'users-component', component: UsersComponent },
+  { path: 'currency-component', component: CurrencyComponent },
   { path: 'employees-component', component: EmployeesComponent },
 ];
 

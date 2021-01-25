@@ -10,10 +10,10 @@ import { Rates } from '../../models/rates';
 
 @Component({
   selector: 'app-currency-converter',
-  templateUrl: './currency-converter.component.html',
-  styleUrls: ['./currency-converter.component.scss']
+  templateUrl: './currency.component.html',
+  styleUrls: ['./currency.component.scss']
 })
-export class CurrencyConverterComponent {
+export class CurrencyComponent {
   private readonly apiBaseURL = "https://api.exchangeratesapi.io/latest"
   private oldToValues = {
     input: 0,

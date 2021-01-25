@@ -5,11 +5,11 @@ import { User } from '../../models/user';
 type ComponentType = "register" | "list";
 
 @Component({
-  selector: 'app-forms',
-  templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.scss']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
-export class FormsComponent {
+export class UsersComponent {
   current: ComponentType = "register";
 
   constructor(public editUserService: EditUserService) { }

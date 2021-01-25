@@ -6,11 +6,11 @@ import { UsersService } from '../../../services/users.service';
 import { ValidatorService } from '../../../services/validator.service';
 
 @Component({
-  selector: 'app-forms-register',
-  templateUrl: './forms-register.component.html',
-  styleUrls: ['./forms-register.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class FormsRegisterComponent {
+export class RegisterComponent {
   constructor(
     private validatorService: ValidatorService,
     private usersService: UsersService,

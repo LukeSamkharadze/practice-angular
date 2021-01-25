@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CurrencyConverterComponent } from './currency-converter.component';
+import { CurrencyComponent } from './currency.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    CurrencyConverterComponent
+    CurrencyComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   exports: [
-    CurrencyConverterComponent
+    CurrencyComponent
   ]
 })
-export class CurrencyConverterModule { }
+export class CurrencyModule { }
