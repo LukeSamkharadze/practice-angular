@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeesService } from '../employees.service';
-import { Employee } from '../models/employee';
+import { Employee } from '../../../models/employee';
 
 @Component({
   selector: 'app-update',

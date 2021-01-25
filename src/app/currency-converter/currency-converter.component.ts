@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { promise } from 'protractor';
 import { forkJoin, Observable, Observer, of, Subject } from 'rxjs';
-import { Currency } from './models/currencies';
-import { Rate } from './models/rate';
-import { Rates } from './models/rates';
+import { Currency } from '../../models/currencies';
+import { Rate } from '../../models/rate';
+import { Rates } from '../../models/rates';
 
 @Component({
   selector: 'app-currency-converter',
