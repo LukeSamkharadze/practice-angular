@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-type CurrentPageType = "users-managment" | "currency-converter";
+type CurrentPageType = "users-managment" | "currency-converter" | "employees";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,5 @@ type CurrentPageType = "users-managment" | "currency-converter";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  current: CurrentPageType = "currency-converter";
+  current: CurrentPageType = "employees";
 }

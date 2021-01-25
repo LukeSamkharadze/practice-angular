@@ -1,12 +1,18 @@
 <div class="main-container">
 
   <div class="button-container">
-    <button class="btn btn-{{current==='users-managment'? 'primary' : 'secondary'}}" (click)="current='users-managment'">
+    <button class="btn btn-{{current==='users-managment'? 'primary' : 'secondary'}}"
+      (click)="current='users-managment'">
       Users Managment
     </button>
 
-    <button class="btn btn-{{current==='currency-converter'? 'primary' : 'secondary'}}" (click)="current='currency-converter'">
+    <button class="btn btn-{{current==='currency-converter'? 'primary' : 'secondary'}}"
+      (click)="current='currency-converter'">
       Currency Exchanger
+    </button>
+
+    <button class="btn btn-{{current==='employees'? 'primary' : 'secondary'}}" (click)="current='employees'">
+      Employees
     </button>
   </div>
 
@@ -15,4 +21,6 @@
 
   <app-currency-converter *ngIf="current === 'currency-converter'">
   </app-currency-converter>
+
+  <app-employees *ngIf="current === 'employees'"></app-employees>
 </div>

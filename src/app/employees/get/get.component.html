@@ -1,0 +1,7 @@
+<form [formGroup]='form' (ngSubmit)="onSubmit()">
+  <label>
+    ID:
+    <input formControlName="id" type="number" class="form-control">
+  </label>
+  <button type="submit" class="btn btn-primary" [disabled]='form.invalid'>GET</button>
+</form>

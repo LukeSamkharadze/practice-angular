@@ -1,0 +1,16 @@
+<div class="main-container">
+  <div class="buttons-container">
+    <button class="btn btn-{{currentComponent ==='register'? 'primary' : 'secondary'}}"
+      (click)="currentComponent='register'">Register</button>
+    <button class="btn btn-{{currentComponent ==='get'? 'primary' : 'secondary'}}"
+      (click)="currentComponent='get'">Get</button>
+    <button class="btn btn-{{currentComponent ==='update'? 'primary' : 'secondary'}}"
+      (click)="currentComponent='update'">Update</button>
+    <button class="btn btn-{{currentComponent ==='remove'? 'primary' : 'secondary'}}"
+      (click)="currentComponent='remove'">Remove</button>
+    <button class="btn btn-{{currentComponent ==='employees'? 'primary' : 'secondary'}}"
+      (click)="currentComponent='employees'">Employees</button>
+  </div>
+  <app-register *ngIf="currentComponent==='register'"></app-register>
+  <app-get *ngIf="currentComponent==='get'"></app-get>
+</div>

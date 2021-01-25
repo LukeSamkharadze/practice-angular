@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersManagmentModule } from './users-managment/users-managment.module';
 import { CurrencyConverterModule } from './currency-converter/currency-converter.module';
+import { EmployeesModule } from './employees/employees.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CurrencyConverterModule } from './currency-converter/currency-converter
     AppRoutingModule,
     ReactiveFormsModule,
     UsersManagmentModule,
-    CurrencyConverterModule
+    CurrencyConverterModule,
+    EmployeesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input formControlName="name" type="text" class="form-control" required>
+  </label>
+
+  <label>
+    Salary:
+    <input formControlName="salary" type="number" class="form-control" required>
+  </label>
+
+  <label>
+    Age:
+    <input formControlName="age" type="number" class="form-control" required>
+  </label>
+
+  <button class="btn btn-primary" [disabled]="form.invalid">Create</button>
+</form>
