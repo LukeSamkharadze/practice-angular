@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-type SelectedComponent = "register" | "get" | "update" | "remove" | "employees";
+type SelectedComponent = "register" | "update" | "employees";
 
 @Component({
   selector: 'app-employees',

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url: "http://dummy.restapiexample.com/api/v1"
-  // url: "http://localhost:3000"
+  // url: "http://dummy.restapiexample.com/api/v1"
+  url: "http://localhost:3000"
 };
 
 /*

@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  > div {
+    background-color: wheat;
+    box-shadow: 0 0 5px 1px black;
+    border-radius: 5px;
+    min-width: 300px;
+    padding: 10px;
+
+    span {
+      color: red;
+    }
+  }
+}

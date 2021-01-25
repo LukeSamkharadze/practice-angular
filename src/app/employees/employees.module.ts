@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { EmployeesComponent } from './employees.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { GetComponent } from './get/get.component';
+import { GetComponent } from './update/update.component';
+import { EmployeesListComponent } from './employees-list/employees-list.component';
 
 
 
 @NgModule({
-  declarations: [RegisterComponent, EmployeesComponent, GetComponent],
+  declarations: [RegisterComponent, EmployeesComponent, GetComponent, EmployeesListComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule

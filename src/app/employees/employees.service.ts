@@ -7,16 +7,23 @@ import { Employee } from './models/employee';
   providedIn: 'root'
 })
 export class EmployeesService {
+  getEmployees() {
+    return this.httpClient.get<Employee[]>(`${environment.url}/data`);
+  }
+  updateEmployee(id: number, employee: Employee) {
+    return this.httpClient.put<Employee>(`${environment.url}/data/${id}`, employee);
+  }
+
+  deleteEmployee(id: number) {
+    return this.httpClient.delete<Employee>(`${environment.url}/data/${id}`);
+  }
+
   register(employee: Employee) {
-    return this.httpClient.post<Employee>(`${environment.url}/create`, employee, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
-    });
+    return this.httpClient.post<Employee>(`${environment.url}/data`, { employee });
   }
 
   getSpecificEmployee(id: number) {
-    return this.httpClient.get<Employee>(`${environment.url}/employee/${id}`);
+    return this.httpClient.get<Employee>(`${environment.url}/data/${id}`);
   }
 
   constructor(private httpClient: HttpClient) { }
