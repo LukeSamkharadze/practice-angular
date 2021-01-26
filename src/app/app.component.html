@@ -1,42 +1,20 @@
-<div class="header">
-  <nav>
-    <a routerLink="/users-component" routerLinkActive="active" class="btn btn-primary">
-      USERS
-    </a>
-
-    <a routerLink="/currency-component" routerLinkActive="active" class="btn btn-primary">
-      CURRENCY
-    </a>
-
-    <a routerLink="/employees-component" routerLinkActive="active" class="btn btn-primary">
-      EMPLOYEES
-    </a>
-  </nav>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <img src="../favicon.ico" alt="angular-logo">
+    Angular
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+      <a class="nav-item nav-link" routerLink="/currency" routerLinkActive="active">Currency</a>
+      <a class="nav-item nav-link" routerLink="/employees" routerLinkActive="active">Employees</a>
+      <a class="nav-item nav-link disabled" href="/">Coming Soon...</a>
+    </div>
+  </div>
+</nav>
 
 <router-outlet></router-outlet>
-
-<!-- <div class="button-container">
-    <button class="btn btn-{{current==='users-managment'? 'primary' : 'secondary'}}"
-      (click)="current='users-managment'">
-      Users Managment
-    </button>
-
-    <button class="btn btn-{{current==='currency-converter'? 'primary' : 'secondary'}}"
-      (click)="current='currency-converter'">
-      Currency Exchanger
-    </button>
-
-    <button class="btn btn-{{current==='employees'? 'primary' : 'secondary'}}" (click)="current='employees'">
-      Employees
-    </button>
-  </div>
-
-  <app-forms *ngIf="current === 'users-managment'">
-  </app-forms>
-
-  <app-currency-converter *ngIf="current === 'currency-converter'">
-  </app-currency-converter>
-
-  <app-employees *ngIf="current === 'employees'"></app-employees>
-</div> -->
