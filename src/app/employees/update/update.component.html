@@ -1,7 +1,7 @@
 <form [formGroup]='formGet'>
   <label>
     ID:
-    <input formControlName="id" type="text" class="form-control">
+    <input formControlName="id" type="number" class="form-control">
   </label>
  
   <div class="buttons-container">
@@ -9,21 +9,21 @@
     <button type="submit" class="btn btn-danger" [disabled]='formGet.invalid' (click)="onDeleteClicked()">DELETE</button>
   </div>
 
-  <ng-container *ngIf="currentlyUpdatingID !== ''">
+  <ng-container *ngIf="currentlyUpdatingID >= 0">
     <form [formGroup]="formUpdate" (ngSubmit)="onUpdateClicked()">
       <label>
         Name:
-        <input formControlName="name" type="text" class="form-control" required>
+        <input formControlName="name" type="text" class="form-control">
       </label>
     
       <label>
         Salary:
-        <input formControlName="salary" type="number" class="form-control" required>
+        <input formControlName="salary" type="number" class="form-control">
       </label>
     
       <label>
         Age:
-        <input formControlName="age" type="number" class="form-control" required>
+        <input formControlName="age" type="number" class="form-control">
       </label>
     
       <button class="btn btn-primary" [disabled]="formUpdate.invalid">Update</button>

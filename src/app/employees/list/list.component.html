@@ -5,10 +5,19 @@
 </div>
 
 <div class="container">
-  <div *ngFor="let employee of currentPageEmployees" >
+  <div *ngFor="let employee of currentPageEmployees" class="employee" (click)="currentEmployeeSelected = employee">
       <div>ID: <span>{{employee.id}}</span></div>
       <div>NAME: <span>{{employee.name}}</span></div>
       <div>SALARY: <span>{{employee.salary}}</span></div>
       <div>AGE: <span>{{employee.age}}</span></div>
+      <div *ngIf="employee === currentEmployeeSelected" class="edit-menu">
+        <button class="btn btn-primary" (click)="onUserEditClicked(employee)">
+          <i class="fas fa-user-edit"></i>
+        </button>
+    
+        <button class="btn btn-danger" (click)="onUserDeleteClicked(employee)">
+          <i class="fas fa-user-slash"></i>
+        </button>
+      </div>
   </div>
 </div>

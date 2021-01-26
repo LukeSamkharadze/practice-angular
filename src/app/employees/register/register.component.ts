@@ -13,7 +13,7 @@ export class RegisterComponent {
   form: FormGroup = new FormGroup({
     name: new FormControl("", Validators.required),
     salary: new FormControl("", [Validators.required, Validators.min(0)]),
-    age: new FormControl("", [Validators.required, Validators.min(0), Validators.max(100)])
+    age: new FormControl("", [Validators.required, Validators.min(0)])
   })
 
   constructor(private employeesService: EmployeesService) { }
@@ -21,8 +21,8 @@ export class RegisterComponent {
   onSubmit() {
     if (this.form.valid)
       this.employeesService.register(this.form.value as Employee).subscribe(
-        o => console.log("succ",o),
-        err => console.log("err", err));
+        o => window.alert("SUCCESSFULLY REGISTERED"),
+        err => window.alert("SOMETHING WENT WRONG"));
   }
 
 }

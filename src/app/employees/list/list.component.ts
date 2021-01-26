@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { EmployeesService } from '../../../services/employees.service';
 import { Employee } from '../../../models/employee';
 
@@ -10,8 +10,11 @@ import { Employee } from '../../../models/employee';
 export class EmployeesListComponent {
   employees: Employee[] = [];
   currentPageEmployees: Employee[] = [];
+  currentEmployeeSelected: Employee | undefined;
 
-  maxEmployeesOnPage = 2;
+  @Output() editClicked = new EventEmitter<Employee>();
+
+  maxEmployeesOnPage = 3;
   currentPage = 0;
 
   constructor(private employeesService: EmployeesService) {
@@ -24,7 +27,8 @@ export class EmployeesListComponent {
   }
 
   updateCurrentPageEmployees() {
-    this.currentPageEmployees = this.employees.slice(this.currentPage * this.maxEmployeesOnPage, (this.currentPage + 1) * this.maxEmployeesOnPage)
+    this.currentPageEmployees = this.employees.slice(this.currentPage * this.maxEmployeesOnPage, (this.currentPage + 1) * this.maxEmployeesOnPage);
+    this.currentEmployeeSelected = undefined;
   }
 
   leftClicked() {
@@ -36,6 +40,17 @@ export class EmployeesListComponent {
 
   rightClicked() {
     this.currentPage++;
+    this.updateCurrentPageEmployees();
+  }
+
+  onUserEditClicked(employee: Employee) {
+    this.editClicked.emit(employee);
+  }
+
+  onUserDeleteClicked(employee: Employee) {
+    this.employees = this.employees.filter(o => o !== employee);
+    this.currentEmployeeSelected = undefined;
+    this.employeesService.deleteEmployee(employee.id).subscribe();
     this.updateCurrentPageEmployees();
   }
 }

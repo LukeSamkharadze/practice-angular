@@ -19,7 +19,7 @@ export class EmployeesService {
   }
 
   register(employee: Employee) {
-    return this.httpClient.post<Employee>(`${environment.url}/data`, { employee });
+    return this.httpClient.post<Employee>(`${environment.url}/data`, employee);
   }
 
   getSpecificEmployee(id: number) {

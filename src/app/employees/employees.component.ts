@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Employee } from 'src/models/employee';
 
 type SelectedComponent = "register" | "update" | "employees";
 
@@ -7,13 +8,17 @@ type SelectedComponent = "register" | "update" | "employees";
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss']
 })
-export class EmployeesComponent implements OnInit {
+export class EmployeesComponent {
 
   currentComponent: SelectedComponent = "employees";
+  editingEmployee: Employee | undefined;
 
   constructor() { }
 
-  ngOnInit(): void {
+  onEditClick(employee: Employee)
+  {
+    this.editingEmployee = employee; 
+    this.currentComponent = 'update';
   }
 
 }

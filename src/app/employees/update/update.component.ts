@@ -1,7 +1,7 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeesService } from '../../../services/employees.service';
 import { Employee } from '../../../models/employee';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-update',
@@ -10,15 +10,17 @@ import { Component } from '@angular/core';
 })
 export class GetComponent {
 
+  @Input() editingEmployee: Employee | undefined;
+
   formGet = new FormGroup({
-    id: new FormControl('', Validators.required)
+    id: new FormControl("", Validators.required)
   })
 
-  currentlyUpdatingID = "";
+  currentlyUpdatingID = -1;
   formUpdate = new FormGroup({
     name: new FormControl("", Validators.required),
     salary: new FormControl("", [Validators.required, Validators.min(0)]),
-    age: new FormControl("", [Validators.required, Validators.min(0), Validators.max(100)])
+    age: new FormControl("", [Validators.required, Validators.min(0)])
   });
 
   constructor(private employeesService: EmployeesService) { }
@@ -27,27 +29,43 @@ export class GetComponent {
     this.employeesService.getSpecificEmployee(this.formGet.value.id).
       subscribe(
         o => this.handleGetEmployee(o),
-        err => this.currentlyUpdatingID = ""
+        err => {
+          this.currentlyUpdatingID = -1;
+          window.alert("SOMETHING WENT WRONG");
+        }
       )
   }
 
   handleGetEmployee(employee: Employee) {
-    console.log(employee);
     this.currentlyUpdatingID = employee.id;
     this.formUpdate.patchValue(employee);
+    window.alert("SUCCESSFULLY FOUND");
+  }
+
+  ngOnChanges() {
+    if (this.editingEmployee) {
+      this.formGet.patchValue(this.editingEmployee);
+      this.currentlyUpdatingID = this.editingEmployee.id;
+      this.formUpdate.patchValue(this.editingEmployee);
+    }
   }
 
   onDeleteClicked() {
     this.employeesService.deleteEmployee(this.formGet.value.id).
-    subscribe({
-      error: () => window.alert("SOMETHING WENT WRONG")
-    });
+      subscribe(
+        o => window.alert("SUCCESSFULLY DELETED"),
+        err => window.alert("SOMETHING WENT WRONG")
+      );
+    this.formGet.reset();
+    this.formUpdate.reset();
+    this.currentlyUpdatingID = -1;
   }
 
   onUpdateClicked() {
     this.employeesService.updateEmployee(this.formGet.value.id, this.formUpdate.value).
-    subscribe({
-      error: () => window.alert("SOMETHING WENT WRONG")
-    });
+      subscribe(
+        o => window.alert("SUCCESSFULLY UPDATED"),
+        err => window.alert("SOMETHING WENT WRONG")
+      );
   }
 }

@@ -11,7 +11,7 @@
   flex-direction: column;
   gap: 10px;
 
-  > div {
+  .employee {
     background-color: wheat;
     box-shadow: 0 0 5px 1px black;
     border-radius: 5px;
@@ -21,5 +21,11 @@
     span {
       color: red;
     }
+  }
+
+  .edit-menu{
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
   }
 }
