@@ -1,21 +1,29 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/" routerLinkActive="active">
-    <img src="../favicon.ico" alt="angular-logo">
-    Angular
-  </a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
-    data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse" id="navbarSupportedContent">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active"><i class="fas fa-users"></i> Users</a>
-      <a class="nav-item nav-link" routerLink="/currency" routerLinkActive="active"><i class="fas fa-coins"></i> Currency</a>
-      <a class="nav-item nav-link" routerLink="/employees" routerLinkActive="active"><i class="fas fa-user-friends"></i> Employees</a>
-      <a class="nav-item nav-link disabled" href="/">Coming Soon...</a>
+<div class="main">
+  <nav class="header navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">
+      <img src="../favicon.ico" alt="angular-logo">
+      Angular
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
+      data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active"><i class="fas fa-users"></i>
+          Users</a>
+        <a class="nav-item nav-link" routerLink="/currency" routerLinkActive="active"><i class="fas fa-coins"></i>
+          Currency</a>
+        <a class="nav-item nav-link" routerLink="/employees" routerLinkActive="active"><i
+            class="fas fa-user-friends"></i>
+          Employees</a>
+        <a class="nav-item nav-link disabled" href="/">Coming Soon...</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<router-outlet></router-outlet>
+  <div class="body">
+    <router-outlet></router-outlet>
+  </div>
+</div>
