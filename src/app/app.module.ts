@@ -9,6 +9,7 @@ import { EmployeesModule } from './employees/employees.module';
 import { UsersModule } from './users/users.module';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NgbCollapse, NgbModule, NgbNavbar } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     UsersModule,
     CurrencyModule,
     EmployeesModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
