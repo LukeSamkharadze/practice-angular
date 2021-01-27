@@ -11,27 +11,34 @@
     </button>
     <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse" id="navbarSupportedContent">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active"><i class="fas fa-users"></i>
+        <a *ngIf="isLoggedIn" class="nav-item nav-link" routerLink="/users" routerLinkActive="active"><i
+            class="fas fa-users"></i>
           Users</a>
         <a class="nav-item nav-link" routerLink="/currency" routerLinkActive="active"><i class="fas fa-coins"></i>
           Currency</a>
         <a class="nav-item nav-link" routerLink="/employees" routerLinkActive="active"><i
             class="fas fa-user-friends"></i>
           Employees</a>
-        <a class="nav-item nav-link disabled" href="/">Coming Soon...</a>
+        <a class="nav-item nav-link disabled" href="/"><i class="fas fa-snowplow"></i> Coming Soon...</a>
       </div>
     </div>
 
     <div class="header-right-container">
       <span *ngIf="isLoggedIn" class="text-white"><i class="fas fa-user"></i> {{loggedInUserName}}</span>
-      <button *ngIf="isLoggedIn" (click)="signOutClicked()" class="btn btn-light">Sign out <i
-          class="fas fa-sign-out-alt"></i></button>
-      <button *ngIf="!isLoggedIn" (click)="logInClicked()" class="btn btn-light">Log in <i
-          class="fas fa-sign-in-alt"></i></button>
+      <button *ngIf="isLoggedIn" (click)="signOutClicked()" class="btn btn-light"><i
+          class="fas fa-sign-out-alt"></i>Sign out</button>
+      <button *ngIf="!isLoggedIn" (click)="logInClicked()" class="btn btn-light"><i class="fas fa-sign-in-alt"></i> Log
+        in </button>
     </div>
   </nav>
 
   <div class="body">
     <router-outlet></router-outlet>
   </div>
+
+  <footer class="bg-light text-center text-lg-start">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2021 Angular All Rights Reserved
+    </div>
+  </footer>
 </div>
