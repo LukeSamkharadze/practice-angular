@@ -8,22 +8,22 @@ import { Employee } from '../models/employee';
 })
 export class EmployeesService {
   getEmployees() {
-    return this.httpClient.get<Employee[]>(`${environment.url}/data`);
+    return this.httpClient.get<Employee[]>(`${environment.usersApiUrl}/data`);
   }
   updateEmployee(id: number, employee: Employee) {
-    return this.httpClient.put<Employee>(`${environment.url}/data/${id}`, employee);
+    return this.httpClient.put<Employee>(`${environment.usersApiUrl}/data/${id}`, employee);
   }
 
   deleteEmployee(id: number) {
-    return this.httpClient.delete<Employee>(`${environment.url}/data/${id}`);
+    return this.httpClient.delete<Employee>(`${environment.usersApiUrl}/data/${id}`);
   }
 
   register(employee: Employee) {
-    return this.httpClient.post<Employee>(`${environment.url}/data`, employee);
+    return this.httpClient.post<Employee>(`${environment.usersApiUrl}/data`, employee);
   }
 
   getSpecificEmployee(id: number) {
-    return this.httpClient.get<Employee>(`${environment.url}/data/${id}`);
+    return this.httpClient.get<Employee>(`${environment.usersApiUrl}/data/${id}`);
   }
 
   constructor(private httpClient: HttpClient) { }

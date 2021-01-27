@@ -1,34 +1,20 @@
-.main-container {
+a {
+  cursor: pointer;
+  user-select: none;
+}
+
+.forms-container {
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  justify-content: center;
   gap: 50px;
 
-  .buttons-container {
+  .currency-input-container {
     display: flex;
     gap: 10px;
-  }
 
-  .forms-container {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-
-    .froms-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .currency-input-container {
-      display: flex;
-      gap: 10px;
-
-      > select {
-        border: none;
-        width: 100px;
-        -webkit-appearance: none;
-      }
+    > select {
+      border: none;
+      width: 100px;
     }
   }
 }

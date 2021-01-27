@@ -1,31 +1,27 @@
-<div class="main-container">
-  <div class="buttons-container">
-    <button class="btn btn-primary" (click)="addNewCurrency()">Add</button>
-    <button class="btn btn-danger" (click)="removeLastCurrency()" [disabled]="froms.controls.length<2">Remove</button>
-  </div>
+<nav class="nav">
+  <a class="nav-link" (click)="addNewCurrency()">Add</a>
+  <a class="nav-link text text-danger" (click)="tryRemoveCurrency()">Remove</a>
+</nav>
 
-  <form [formGroup]="formGroup" class="forms-container">
+<form [formGroup]="formGroup" class="forms-container">
+  <div formArrayName="froms" class="froms-container">
+    <div *ngFor="let inputForm of froms.controls; let i=index" class="form-group">
+      <div [formGroupName]="i" class="currency-input-container">
+        <select formControlName="currency" class="form-control">
+          <option *ngFor="let currency of currencies">{{currency}}</option>
+        </select>
 
-    <div formArrayName="froms" class="froms-container">
-      <div *ngFor="let inputForm of froms.controls; let i=index">
-        <div [formGroupName]="i" class="currency-input-container">
-          <select formControlName="currency" class="form-control">
-            <option *ngFor="let currency of currencies">{{currency}}</option>
-          </select>
-
-          <input formControlName="input" type="number" class="form-control" placeholder="0.00">
-        </div>
+        <input formControlName="input" type="number" class="form-control" placeholder="0.00">
       </div>
     </div>
+  </div>
 
-    <div formGroupName="to" class="currency-input-container">
-      <input formControlName="input" type="number" class="form-control" placeholder="0.00">
+  <div formGroupName="to" class="currency-input-container">
+    <input formControlName="input" type="number" class="form-control" placeholder="0.00">
 
-      <select formControlName="currency" class="form-control">
-        <option *ngFor="let currency of currencies">{{currency}}</option>
-      </select>
+    <select formControlName="currency" class="form-control">
+      <option *ngFor="let currency of currencies">{{currency}}</option>
+    </select>
 
-    </div>
-
-  </form>
-</div>
+  </div>
+</form>

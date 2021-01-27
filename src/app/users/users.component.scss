@@ -1,11 +1,14 @@
-.main-container
-{
+.main-container {
   display: flex;
   gap: 50px;
   flex-direction: column;
 
-  >.button-container
-  {
+  a {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  > .button-container {
     display: flex;
     gap: 10px;
     justify-content: center;

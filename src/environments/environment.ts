@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  // url: "http://dummy.restapiexample.com/api/v1"
-  url: "http://localhost:3000"
+  // usersApiUrl: "http://dummy.restapiexample.com/api/v1"
+  usersApiUrl: "http://localhost:3000",
+  currencyApiUrl: "https://api.exchangeratesapi.io/latest"
 };
 
 /*

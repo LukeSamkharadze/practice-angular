@@ -11,7 +11,7 @@
     </button>
     <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse" id="navbarSupportedContent">
       <div class="navbar-nav">
-        <a *ngIf="isLoggedIn" class="nav-item nav-link" routerLink="/users" routerLinkActive="active"><i
+        <a [class.disabled]="!isLoggedIn" class="nav-item nav-link" routerLink="/users" routerLinkActive="active"><i
             class="fas fa-users"></i>
           Users</a>
         <a class="nav-item nav-link" routerLink="/currency" routerLinkActive="active"><i class="fas fa-coins"></i>
