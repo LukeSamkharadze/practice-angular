@@ -15,12 +15,21 @@ export class UsersService {
     },
     {
       email: "lsamk19@gmail.com",
-      password: "123456789123456789",
+      password: "123",
       nickname: "luke",
+      phoneNumber: "+380987654321",
+      website: "www.facebook.com"
+    },
+    {
+      email: "1",
+      password: "1",
+      nickname: "NoobMaster69",
       phoneNumber: "+380987654321",
       website: "www.facebook.com"
     }
   ]
+
+  private loggedInUser: User | undefined;
 
   addUser(user: User) {
     this.users.push(user);
@@ -28,5 +37,24 @@ export class UsersService {
 
   removeUser(email: string) {
     this.users = this.users.filter(o => o.email !== email);
+  }
+
+  getLoggedInUser() {
+    return this.loggedInUser;
+  }
+
+  logOut() {
+    console.log("logging out");
+    this.loggedInUser = undefined;
+  }
+
+  logIn(email: string, password: string) {
+    let matchedUserWithMail = this.users.find(o => o.email === email);
+    if (password && matchedUserWithMail?.password === password) {
+      this.loggedInUser = matchedUserWithMail;
+      return true;
+    }
+
+    return false;
   }
 }

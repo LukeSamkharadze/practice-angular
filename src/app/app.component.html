@@ -21,6 +21,14 @@
         <a class="nav-item nav-link disabled" href="/">Coming Soon...</a>
       </div>
     </div>
+
+    <div class="header-right-container">
+      <span *ngIf="isLoggedIn" class="text-white"><i class="fas fa-user"></i> {{loggedInUserName}}</span>
+      <button *ngIf="isLoggedIn" (click)="signOutClicked()" class="btn btn-light">Sign out <i
+          class="fas fa-sign-out-alt"></i></button>
+      <button *ngIf="!isLoggedIn" (click)="logInClicked()" class="btn btn-light">Log in <i
+          class="fas fa-sign-in-alt"></i></button>
+    </div>
   </nav>
 
   <div class="body">

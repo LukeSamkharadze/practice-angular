@@ -9,7 +9,8 @@ import { EmployeesModule } from './employees/employees.module';
 import { UsersModule } from './users/users.module';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { NgbCollapse, NgbModule, NgbNavbar } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,8 @@ import { NgbCollapse, NgbModule, NgbNavbar } from '@ng-bootstrap/ng-bootstrap';
     UsersModule,
     CurrencyModule,
     EmployeesModule,
-    AppRoutingModule,
     NgbModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
