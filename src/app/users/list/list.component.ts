@@ -19,12 +19,19 @@ export class ListComponent {
   }
 
   onUserEditClicked(user: User) {
-    this.userEditClick.emit(user);
+    if (user === this.usersService.getLoggedInUser())
+      this.userEditClick.emit(user);
+    else
+      window.alert("You dont have permission to edit other users");
   }
 
   onUserDeleteClicked(user: User) {
-    if (window.confirm("Are you sure? This action is irreversible"))
-      this.usersService.removeUser(user.email);
+    if (user === this.usersService.getLoggedInUser()) {
+      if (window.confirm("Are you sure? This action is irreversible"))
+        this.usersService.removeUser(user.email);
+    }
+    else
+      window.alert("You dont have permission to edit other users");
   }
 
   getUserMenuOpacity(user: User): number {

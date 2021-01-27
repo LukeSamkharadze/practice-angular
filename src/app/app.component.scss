@@ -1,13 +1,19 @@
 :host {
   display: block;
+  flex-grow: 1;
 }
 
 .main {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   gap: 15px;
+
+  >*{
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+  }
 
   .header {
     .header-right-container {
@@ -15,10 +21,6 @@
       gap: 10px;
       align-items: center;
     }
-  }
-
-  > * {
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
   }
 
   .body {

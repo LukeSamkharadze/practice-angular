@@ -5,11 +5,12 @@
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
-* {
-  font-family: "Roboto";
+body {
+  min-height: 100vh;
+  display: flex;
+  padding: 10px;
 }
 
-html {
-  overflow-y: scroll;
-  overflow-y: overlay;
+* {
+  font-family: "Roboto";
 }
