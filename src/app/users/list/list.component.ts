@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../../../models/user';
 import { UsersService } from '../../../services/users.service';
 
@@ -12,7 +13,7 @@ export class ListComponent {
 
   @Output() userEditClick = new EventEmitter<User>();
 
-  constructor(public usersService: UsersService) { }
+  constructor(public usersService: UsersService, private router: Router) { }
 
   onUserClicked(user: User) {
     this.activeUser = user;
@@ -27,8 +28,11 @@ export class ListComponent {
 
   onUserDeleteClicked(user: User) {
     if (user === this.usersService.getLoggedInUser()) {
-      if (window.confirm("Are you sure? This action is irreversible"))
+      if (window.confirm("Are you sure? This action is irreversible")) {
+        this.usersService.logOut();
+        this.router.navigate(["/login"]);
         this.usersService.removeUser(user.email);
+      }
     }
     else
       window.alert("You dont have permission to edit other users");
