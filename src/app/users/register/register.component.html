@@ -1,81 +1,102 @@
-<form [formGroup]="formGroup" (submit)="onSubmit()">
-  <div class="center">
-    <div class="container">
+<form [formGroup]="form" (submit)="onSubmit()">
 
-      <label for="email">
-        <span *ngIf="isValid('email')">*</span>
-        E-mail:
-      </label>
-      <div>
-        <input formControlName="email" id="email" type="email" placeholder="E-mail">
-        <div *ngIf="isAlertPermissible('email')" class="invalid-alert">Email is not valid</div>
-      </div>
-
-      <ng-container formGroupName="passwordGroup">
-        <label for="password">
-          <span *ngIf="isValid('password', ['passwordGroup'])">*</span>
-          Password:
-        </label>
-        <div>
-          <input formControlName="password" id="password" type="password" placeholder="Password">
-          <div *ngIf="isAlertPermissible('password', ['passwordGroup'])" class="invalid-alert">
-            Password should be more than 7 characters and contain only english alphabet and numbers
-          </div>
-        </div>
-
-        <label for="confirm-password">
-          <span *ngIf="isValid('confirmPassword', ['passwordGroup'])">*</span>
-          Confirm Password:
-        </label>
-        <div>
-          <input formControlName="confirmPassword" id="confirm-password" type="password" placeholder="Confirm Password">
-          <div *ngIf="isAlertPermissible('passwordGroup')" class="invalid-alert">Password did not match</div>
-        </div>
-      </ng-container>
-
-      <label for="nickname">
-        <span *ngIf="isValid('nickname')">*</span>
-        Nickname:
-      </label>
-      <div>
-        <input formControlName="nickname" id="nickname" type="text" placeholder="Nickname">
-        <div *ngIf="isAlertPermissible('nickname')" class="invalid-alert">
-          Nickname should contain only english characters numbers and character -
-        </div>
-      </div>
-
-      <label for="phone-number">
-        <span *ngIf="isValid('phoneNumber')">*</span>
-        Phone Number:
-      </label>
-      <div>
-        <input formControlName="phoneNumber" id="phone-number" type="tel" placeholder="Phone Number">
-        <div *ngIf="isAlertPermissible('phoneNumber')" class="invalid-alert">
-          Phone Number should always start from +380 then it should contain 9 numbers
-        </div>
-      </div>
-
-      <label for="website">
-        <span *ngIf="isValid('website')">*</span>
-        Website:
-      </label>
-      <div>
-        <input formControlName="website" id="website" type="url" placeholder="Website">
-        <div *ngIf="isAlertPermissible('website')" class="invalid-alert">Website is not valid</div>
-      </div>
-
-      <ng-container *ngIf="!isEditing">
-        <div></div>
-        <div class="agreement">
-          <input formControlName="agreement" id="agreement" type="checkbox" required>
-          <label for="agreement">&nbsp;I have read the <a href="">agreement</a></label>
-          <div *ngIf="isAlertPermissible('agreement')" class="invalid-alert">You must agree to the agreement</div>
-        </div>
-      </ng-container>
-
-      <div></div>
-      <button [disabled]="!formGroup.valid" class="btn btn-lg btn-primary" type="submit">{{isEditing? 'Edit' :
-        'Register'}}</button>
+  <div class="form-group">
+    <label for="email">
+      E-mail:
+      <span *ngIf="isValid('email')" class="text-danger">*</span>
+    </label>
+    <div>
+      <input formControlName="email" id="email" type="email" class="form-control"
+        [ngClass]="{'border border-danger': isAlertPermissible('email')}">
+      <div *ngIf="isAlertPermissible('email')" class="alert alert-danger">Email is not valid</div>
     </div>
   </div>
+
+  <div class="form-group">
+    <label for="password">
+      Password:
+      <span *ngIf="isValid('password')" class="text-danger" class="text-danger">*</span>
+    </label>
+    <div>
+      <input formControlName="password" id="password" type="password" class="form-control"
+        [ngClass]="{'border border-danger': isAlertPermissible('password')}">
+      <div *ngIf="isAlertPermissible('password')" class="alert alert-danger">
+        Password should be more than 7 characters and contain only english alphabet and numbers
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="confirm-password">
+      Confirm Password:
+      <span *ngIf="isValid('confirmPassword')" class="text-danger">*</span>
+    </label>
+    <div>
+      <input formControlName="confirmPassword" id="confirm-password" type="password" class="form-control"
+        [ngClass]="{'border border-danger': isAlertPermissible('confirmPassword')}">
+      <div *ngIf="isAlertPermissible('confirmPassword')" class="alert alert-danger">Password did not match</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="nickname">
+      Nickname:
+      <span *ngIf="isValid('nickname')" class="text-danger">*</span>
+    </label>
+    <div>
+      <input formControlName="nickname" id="nickname" type="text" class="form-control"
+        [ngClass]="{'border border-danger': isAlertPermissible('nickname')}">
+      <div *ngIf="isAlertPermissible('nickname')" class="alert alert-danger">
+        Nickname should contain only english alphabet, numbers and character "-"
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="phone-number">
+      Phone Number:
+      <span *ngIf="isValid('phoneNumber')" class="text-danger">*</span>
+    </label>
+    <div>
+      <input formControlName="phoneNumber" id="phone-number" type="tel" class="form-control"
+        [ngClass]="{'border border-danger': isAlertPermissible('phoneNumber')}">
+      <div *ngIf="isAlertPermissible('phoneNumber')" class="alert alert-danger">
+        Phone Number should always start from +380 then it should contain 9 numbers
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="website">
+      Website:
+      <span *ngIf="isValid('website')" class="text-danger">*</span>
+    </label>
+    <div>
+      <input formControlName="website" id="website" type="url" class="form-control"
+        [ngClass]="{'border border-danger': isAlertPermissible('website')}">
+      <div *ngIf="isAlertPermissible('website')" class="alert alert-danger">Website is not valid</div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <ng-container *ngIf="!isEditing">
+      <div class="agreement">
+        <input formControlName="agreement" id="agreement" type="checkbox" required>
+        <label for="agreement">&nbsp;I have read the <a href="">agreement</a></label>
+        <div *ngIf="isAlertPermissible('agreement')" class="alert alert-danger">You must agree to the agreement</div>
+      </div>
+    </ng-container>
+  </div>
+
+
+  <div></div>
+  <button [disabled]="!form.valid" class="btn btn-dark" type="submit">
+    <ng-container *ngIf="isEditing">
+      <i class="fas fa-user-edit"></i> Edit
+    </ng-container>
+    <ng-container *ngIf="!isEditing">
+      <i class="fas fa-user-plus"></i> Register
+    </ng-container>
+  </button>
 </form>

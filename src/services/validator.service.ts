@@ -1,35 +1,37 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, ValidationErrors, Validators } from '@angular/forms';
+import { RegisterComponent } from 'src/app/users/register/register.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ValidatorService {
-  email(fromControl: FormControl): ValidationErrors | null {
+  email(fromControl: AbstractControl) {
     return Validators.pattern("^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")(fromControl);
   }
 
-  password(formControl: FormControl): ValidationErrors | null {
-    return Validators.pattern("[a-zA-Z0-9]{8,}")(formControl);
+  password(control: AbstractControl) {
+    return Validators.pattern("[a-zA-Z0-9]{8,}")(control);
   }
 
-  confirmedPassword(abstractControl: AbstractControl): ValidationErrors | null {
-    if (abstractControl.get("password")?.value === abstractControl.get("confirmPassword")?.value)
-      return null;
-    return { confirmPassword: true }
+  confirmedPasswordFactory(registerComponent: RegisterComponent) {
+    return (control: AbstractControl) => {
+      console.log(registerComponent.form?.get("password")?.value, registerComponent.form?.get("confirmPassword")?.value)
+      if (registerComponent.form?.get("password")?.value === registerComponent.form?.get("confirmPassword")?.value)
+        return null;
+      return { confirmPassword: true }
+    }
   }
 
-  nickname(formControl: FormControl): ValidationErrors | null {
-    return Validators.pattern("[a-zA-Z0-9-]+")(formControl);
+  nickname(control: AbstractControl) {
+    return Validators.pattern("[a-zA-Z0-9-]+")(control);
   }
 
-  phoneNumber(formControl: FormControl): ValidationErrors | null {
-    return Validators.pattern("\\+380[0-9]{9}")(formControl)
+  phoneNumber(control: AbstractControl) {
+    return Validators.pattern("\\+380[0-9]{9}")(control)
   }
 
-  website(formControl: FormControl): ValidationErrors | null {
-    return Validators.pattern("(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})")(formControl);
+  website(control: AbstractControl) {
+    return Validators.pattern("(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})")(control);
   }
-
-  constructor() { }
 }
