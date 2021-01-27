@@ -16,6 +16,16 @@
   }
 
   nav.header {
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .fab.fa-angular {
+      font-size: 50px;
+      vertical-align: center;
+    }
+
     a {
       font-size: 20px;
     }

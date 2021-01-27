@@ -9,36 +9,38 @@ $edit-menu-color: rgba(0, 0, 0, 0.75);
   .user {
     position: relative;
     > .user-info {
-      border: 1px solid black;
       display: grid;
       grid-template-columns: auto 1fr;
       padding: 15px;
       gap: 15px;
       border-radius: 10px;
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
-      background-color: Azure;
+      background-color: gray;
 
       > *:nth-child(odd) {
         justify-self: end;
       }
+
+      > *:nth-child(even) {
+        color: white;
+        font-weight: bold;
+      }
     }
 
-    >.edit-menu
-    {
+    > .edit-menu {
       transition: all 0.5s ease;
       width: 100%;
       position: absolute;
       display: flex;
       justify-content: center;
-      gap:20px;
+      gap: 20px;
       z-index: 2;
       background-color: $edit-menu-color;
       border-radius: 10px;
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
       padding: 10px;
 
-      &:before
-      {
+      &:before {
         content: "";
         position: absolute;
         top: -21px;

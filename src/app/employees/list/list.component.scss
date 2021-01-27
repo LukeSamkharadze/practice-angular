@@ -12,14 +12,15 @@
   gap: 10px;
 
   .employee {
-    background-color: wheat;
+    background-color: gray;
     box-shadow: 0 0 5px 1px black;
     border-radius: 5px;
     min-width: 300px;
     padding: 10px;
 
     span {
-      color: red;
+      color: white;
+      font-weight: bold;
     }
   }
 

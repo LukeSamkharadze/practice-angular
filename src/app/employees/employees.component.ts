@@ -10,7 +10,7 @@ type SelectedComponent = "register" | "update" | "employees";
 })
 export class EmployeesComponent {
 
-  currentComponent: SelectedComponent = "employees";
+  currentComponent: SelectedComponent = "register";
   editingEmployee: Employee | undefined;
 
   constructor() { }

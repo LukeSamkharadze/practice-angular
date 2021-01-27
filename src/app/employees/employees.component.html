@@ -1,13 +1,10 @@
-<div class="main-container">
-  <div class="buttons-container">
-    <button class="btn btn-{{currentComponent ==='register'? 'primary' : 'secondary'}}"
-      (click)="currentComponent='register'" editingEmployee=undefined;>Register</button>
-    <button class="btn btn-{{currentComponent ==='update'? 'primary' : 'secondary'}}"
-      (click)="currentComponent='update'">Update</button>
-    <button class="btn btn-{{currentComponent ==='employees'? 'primary' : 'secondary'}}"
-      (click)="currentComponent='employees'; editingEmployee=undefined;">Employees</button>
-  </div>
+<nav class="nav">
+  <a class="nav-link" (click)="currentComponent='register'" editingEmployee=undefined;>Register</a>
+  <a class="nav-link" (click)="currentComponent='update'">Update</a>
+  <a class="nav-link" (click)="currentComponent='employees'; editingEmployee=undefined;">Employees</a>
+</nav>
 
+<div class="main-container">
   <app-register *ngIf="currentComponent==='register'"></app-register>
   <app-update *ngIf="currentComponent==='update'" [editingEmployee]="editingEmployee"></app-update>
   <app-list *ngIf="currentComponent==='employees'" (editClicked)="onEditClick($event)"></app-list>

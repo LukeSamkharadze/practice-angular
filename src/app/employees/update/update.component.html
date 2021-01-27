@@ -3,30 +3,29 @@
     ID:
     <input formControlName="id" type="number" class="form-control">
   </label>
- 
+
   <div class="buttons-container">
-    <button type="submit" class="btn btn-primary" [disabled]='formGet.invalid' (click)="onGetClicked()">GET</button>
-    <button type="submit" class="btn btn-danger" [disabled]='formGet.invalid' (click)="onDeleteClicked()">DELETE</button>
+    <button type="submit" class="btn btn-dark" [disabled]='formGet.invalid' (click)="onGetClicked()">GET</button>
+    <button type="submit" class="btn btn-danger" [disabled]='formGet.invalid'
+      (click)="onDeleteClicked()">DELETE</button>
   </div>
 
-  <ng-container *ngIf="currentlyUpdatingID >= 0">
-    <form [formGroup]="formUpdate" (ngSubmit)="onUpdateClicked()">
-      <label>
-        Name:
-        <input formControlName="name" type="text" class="form-control">
-      </label>
-    
-      <label>
-        Salary:
-        <input formControlName="salary" type="number" class="form-control">
-      </label>
-    
-      <label>
-        Age:
-        <input formControlName="age" type="number" class="form-control">
-      </label>
-    
-      <button class="btn btn-primary" [disabled]="formUpdate.invalid">Update</button>
-    </form>
-  </ng-container>
+  <form [formGroup]="formUpdate" (ngSubmit)="onUpdateClicked()" *ngIf="currentlyUpdatingID >= 0">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input formControlName="name" id="name" type="text" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="salary"> Salary:</label>
+      <input formControlName="salary" id="salary" type="number" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input formControlName="age" id="age" type="number" class="form-control" required>
+    </div>
+
+    <button class="btn btn-dark" [disabled]="formUpdate.invalid"><i class="fas fa-user-edit"></i> Update</button>
+  </form>
 </form>

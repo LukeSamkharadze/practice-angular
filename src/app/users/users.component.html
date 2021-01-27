@@ -1,9 +1,9 @@
-<div class="main-container">
-  <nav class="nav">
-    <a class="nav-link" (click)="current='register'">{{editUserService.isEditing? 'Edit' : 'Register'}}</a>
-    <a class="nav-link" (click)="current='list'">List</a>
-  </nav>
+<nav class="nav">
+  <a class="nav-link" (click)="current='register'">{{editUserService.isEditing? 'Edit' : 'Register'}}</a>
+  <a class="nav-link" (click)="current='list'">List</a>
+</nav>
 
+<div class="main-container">
   <app-register *ngIf="current === 'register'" [isEditing]="editUserService.isEditing"></app-register>
   <app-list *ngIf="current === 'list'" (userEditClick)="onUserEditClicked($event)"></app-list>
 </div>
