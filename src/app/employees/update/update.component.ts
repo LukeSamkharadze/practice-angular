@@ -9,6 +9,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./update.component.scss']
 })
 export class GetComponent {
+  isLoading = false;
 
   @Input() editingEmployee: Employee | undefined;
 
@@ -26,13 +27,15 @@ export class GetComponent {
   constructor(private employeesService: EmployeesService) { }
 
   onGetClicked() {
+    this.isLoading = true;
     this.employeesService.getSpecificEmployee(this.formGet.value.id).
       subscribe(
         o => this.handleGetEmployee(o),
         err => {
           this.currentlyUpdatingID = -1;
           window.alert("SOMETHING WENT WRONG");
-        }
+        },
+        () => this.isLoading = false
       )
   }
 
@@ -52,10 +55,12 @@ export class GetComponent {
   }
 
   onDeleteClicked() {
+    this.isLoading = true;
     this.employeesService.deleteEmployee(this.formGet.value.id).
       subscribe(
         o => window.alert("SUCCESSFULLY DELETED"),
-        err => window.alert("SOMETHING WENT WRONG")
+        err => window.alert("SOMETHING WENT WRONG"),
+        () => this.isLoading = false
       );
     this.formGet.reset();
     this.formUpdate.reset();
@@ -63,10 +68,12 @@ export class GetComponent {
   }
 
   onUpdateClicked() {
+    this.isLoading = true;
     this.employeesService.updateEmployee(this.formGet.value.id, this.formUpdate.value).
       subscribe(
         o => window.alert("SUCCESSFULLY UPDATED"),
-        err => window.alert("SOMETHING WENT WRONG")
+        err => window.alert("SOMETHING WENT WRONG"),
+        () => this.isLoading = false
       );
   }
 }

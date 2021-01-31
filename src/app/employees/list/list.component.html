@@ -1,12 +1,11 @@
+<app-loading-circle *ngIf="isLoading"></app-loading-circle>
+
 <div class="buttons-container">
   <button (click)="leftClicked()" class="btn btn-dark">🠔</button>
   <button class="btn btn-secondary" disabled>{{currentPage}}</button>
   <button (click)="rightClicked()" class="btn btn-dark">➝</button>
 </div>
 
-<div class="loading-circle-container">
-  <app-loading-circle *ngIf="isLoading"></app-loading-circle>
-</div>
 
 <div class="container">
   <div *ngFor="let employee of currentPageEmployees" class="employee" (click)="currentEmployeeSelected = employee">

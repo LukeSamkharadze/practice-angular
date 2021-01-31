@@ -1,4 +1,6 @@
-<div [@rotate]="state" (@rotate.done)="onRotateDone($event)">
-  <div class="ball"></div>
+<div class="container">
+  <div class="rotator" [@rotate]="state" (@rotate.done)="onRotateDone($event)">
+    <div class="ball"></div>
+  </div>
+  <div class="center"></div>
 </div>
-<div class="center"></div>

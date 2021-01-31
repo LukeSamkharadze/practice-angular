@@ -10,6 +10,8 @@ import { Employee } from '../../../models/employee';
 })
 export class RegisterComponent {
 
+  isLoading = false;
+
   form: FormGroup = new FormGroup({
     name: new FormControl("", Validators.required),
     salary: new FormControl("", [Validators.required, Validators.min(0)]),
@@ -19,10 +21,13 @@ export class RegisterComponent {
   constructor(private employeesService: EmployeesService) { }
 
   onSubmit() {
-    if (this.form.valid)
+    if (this.form.valid) {
+      this.isLoading = true;
       this.employeesService.register(this.form.value as Employee).subscribe(
         o => window.alert("SUCCESSFULLY REGISTERED"),
-        err => window.alert("SOMETHING WENT WRONG"));
+        err => window.alert("SOMETHING WENT WRONG"),
+        () => this.isLoading = false);
+    }
   }
 
 }

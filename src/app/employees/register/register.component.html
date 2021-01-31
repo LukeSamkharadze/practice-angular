@@ -1,3 +1,5 @@
+<app-loading-circle *ngIf="isLoading"></app-loading-circle>
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="name">Name:</label>
