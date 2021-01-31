@@ -1,9 +1,6 @@
-import { CurrencyPipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { promise } from 'protractor';
-import { forkJoin, Observable, Observer, of, Subject } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { CurrencyService } from 'src/services/currency.service';
 import { Currency } from '../../models/currencies';
 import { Rate } from '../../models/rate';

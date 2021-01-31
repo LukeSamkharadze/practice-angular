@@ -5,13 +5,12 @@
   background-color: rgba(0, 0, 0, 0.1);
   position: relative;
   border-radius: 50%;
-  padding: 5%;
+  padding: 15%;
 }
 
 div {
   width: 100%;
   height: 100%;
-  padding: 5%;
 
   .ball {
     width: 20%;
@@ -22,8 +21,8 @@ div {
 }
 
 .center {
-  width: 60%;
-  height: 60%;
+  width: 55%;
+  height: 55%;
   position: absolute;
   left: 50%;
   top: 50%;

@@ -4,9 +4,11 @@
   <button (click)="rightClicked()" class="btn btn-dark">➝</button>
 </div>
 
+<div class="loading-circle-container">
+  <app-loading-circle *ngIf="isLoading"></app-loading-circle>
+</div>
 
 <div class="container">
-  <app-loading-circle *ngIf="isLoading"></app-loading-circle>
   <div *ngFor="let employee of currentPageEmployees" class="employee" (click)="currentEmployeeSelected = employee">
     <div>ID: <span>{{employee.id}}</span></div>
     <div>NAME: <span>{{employee.name}}</span></div>
