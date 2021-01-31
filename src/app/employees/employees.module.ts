@@ -5,6 +5,7 @@ import { EmployeesComponent } from './employees.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GetComponent } from './update/update.component';
 import { EmployeesListComponent } from './list/list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -12,7 +13,8 @@ import { EmployeesListComponent } from './list/list.component';
   declarations: [RegisterComponent, EmployeesComponent, GetComponent, EmployeesListComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [EmployeesComponent]
 })

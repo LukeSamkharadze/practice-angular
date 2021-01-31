@@ -1,0 +1,33 @@
+:host {
+  width: 66px;
+  height: 66px;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 50%;
+  padding: 5%;
+}
+
+div {
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+
+  .ball {
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+    background-color: #343a40;
+  }
+}
+
+.center {
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.39);
+  border-radius: 50%;
+}

@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Employee } from '../models/employee';
+import { delay } from "rxjs/operators"
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeesService {
   getEmployees() {
-    return this.httpClient.get<Employee[]>(`${environment.usersApiUrl}/data`);
+    return this.httpClient.get<Employee[]>(`${environment.usersApiUrl}/data`).pipe(delay(5000));
   }
   updateEmployee(id: number, employee: Employee) {
     return this.httpClient.put<Employee>(`${environment.usersApiUrl}/data/${id}`, employee);
