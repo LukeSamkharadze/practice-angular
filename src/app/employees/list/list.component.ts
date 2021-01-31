@@ -16,12 +16,14 @@ export class EmployeesListComponent {
 
   maxEmployeesOnPage = 3;
   currentPage = 0;
+  isLoading = true;
 
   constructor(private employeesService: EmployeesService) {
     this.employeesService.getEmployees().subscribe(o => this.handleEmployees(o));
   }
 
   handleEmployees(employees: Employee[]) {
+    this.isLoading = false;
     this.employees = employees;
     this.updateCurrentPageEmployees();
   }
