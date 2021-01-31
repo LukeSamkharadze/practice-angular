@@ -17,6 +17,8 @@ export class CurrencyComponent {
     this.requestCurrencyNames();
   }
 
+  isLoading = true;
+
   private readonly apiBaseURL = "https://api.exchangeratesapi.io/latest"
   private oldToValues = {
     input: 0,
@@ -60,32 +62,41 @@ export class CurrencyComponent {
   }
 
   private fromsChanged() {
+    this.isLoading = true;
     let observables = Array
       .apply(null, Array((this.froms.controls.length)))
       .map((control, index) => this.currencyService.getCurrencyRate<Rate>(this.getFrom("currency", index).value, this.getTo("currency").value))
 
     forkJoin(observables).subscribe(results => {
       let result = results
-        .map((rate, index) => this.getFrom("input", index).value * rate.rates[this.getTo("currency").value as Currency]!)
+        .map((rate, index) => this.getFrom("input", index)?.value * rate.rates[this.getTo("currency").value as Currency]!)
         .reduce((acc, curr) => acc + curr);
 
       this.getTo("input").setValue(result.toFixed(2), { emitEvent: false });
       this.oldToValues.input = result;
-    });
+    },
+      err => window.alert(err),
+      () => this.isLoading = false);
   }
 
   private toChanged() {
     if (this.froms.controls.length == 1) {
+      this.isLoading = true;
       this.currencyService.getCurrencyRate<Rate>(this.getTo("currency").value, this.getFrom("currency", 0).value)
         .subscribe((rate: Rate) =>
-          this.getFrom("input", 0).setValue((this.getTo("input").value * rate.rates[this.getFrom("currency", 0).value as Currency]!).toFixed(2), { emitEvent: false })
-        );
+          this.getFrom("input", 0).setValue((this.getTo("input")?.value ?? 0 * rate.rates[this.getFrom("currency", 0).value as Currency]!).toFixed(2), { emitEvent: false }),
+          err => window.alert(err),
+          () => this.isLoading = false);
     }
     else {
       let scale = 1;
       if (this.oldToValues.currency !== this.getTo("currency").value) {
+        this.isLoading = true;
         this.currencyService.getCurrencyRate<Rate>(this.oldToValues.currency as Currency, this.getTo("currency").value)
-          .subscribe((rate: Rate) => scale = rate.rates[this.getTo("currency").value as Currency]!);
+          .subscribe(
+            (rate: Rate) => scale = rate.rates[this.getTo("currency").value as Currency]!,
+            err => window.alert(err),
+            () => this.isLoading = false);
       }
       if (this.oldToValues.input != 0) {
         scale *= this.getTo("input").value / this.oldToValues.input;
@@ -99,10 +110,13 @@ export class CurrencyComponent {
   }
 
   private requestCurrencyNames() {
+    this.isLoading = true;
     this.currencyService.getCurrencyNames().subscribe((rates: Rates) => {
       for (let currencyName in rates.rates)
         this.currencies.push(currencyName);
-    });
+    },
+      err => window.alert(err),
+      () => this.isLoading = false);
   }
 
   public addNewCurrency() {

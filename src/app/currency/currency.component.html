@@ -3,6 +3,8 @@
   <a class="nav-link text text-danger" (click)="tryRemoveCurrency()">Remove</a>
 </nav>
 
+<app-loading-circle *ngIf="isLoading"></app-loading-circle>
+
 <form [formGroup]="formGroup" class="forms-container">
   <div formArrayName="froms" class="froms-container">
     <div *ngFor="let inputForm of froms.controls; let i=index" class="form-group">
