@@ -9,12 +9,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
-  { path: 'currency', component: CurrencyComponent },
-  { path: 'employees', component: EmployeesComponent },
-  { path: '**', component: NotFoundComponent },
+  { path: '', component: HomeComponent,data: {animation: 'home'} },
+  { path: 'login', component: LoginComponent,data: {animation: 'login'} },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard],data: {animation: 'users'} },
+  { path: 'currency', component: CurrencyComponent,data: {animation: 'currency'}},
+  { path: 'employees', component: EmployeesComponent, data: {animation: 'employees'} },
+  { path: '**', component: NotFoundComponent,data: {animation: '**'} },
 ];
 
 @NgModule({

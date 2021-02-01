@@ -1,10 +1,13 @@
+import { animate, animateChild, group, query, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { routerAnimation } from 'src/animations/routerAnimation';
 import { UsersService } from 'src/services/users.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [routerAnimation]
 })
 export class AppComponent {
   isNavbarCollapsed = true;
@@ -26,5 +29,9 @@ export class AppComponent {
 
   logInClicked() {
     this.router.navigate(["/login"]);
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }

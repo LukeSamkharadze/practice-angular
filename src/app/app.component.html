@@ -32,8 +32,8 @@
     </div>
   </nav>
 
-  <div class="body">
-    <router-outlet></router-outlet>
+  <div class="body" [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 
   <div class="text-center text-white p-3 bg-dark">
