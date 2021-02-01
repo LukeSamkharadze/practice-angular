@@ -86,7 +86,6 @@ export class UsersService {
   }
 
   logOut() {
-    console.log("logging out");
     this.loggedInUser = undefined;
   }
 

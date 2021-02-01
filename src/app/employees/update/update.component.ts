@@ -41,7 +41,6 @@ export class GetComponent {
 
   handleGetEmployee(employee: Employee) {
     this.currentlyUpdatingID = employee.id;
-    console.log(employee);
     this.formUpdate.patchValue(employee);
     window.alert("SUCCESSFULLY FOUND");
   }

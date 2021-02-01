@@ -16,7 +16,6 @@ export class ValidatorService {
 
   confirmedPasswordFactory(registerComponent: RegisterComponent) {
     return (control: AbstractControl) => {
-      console.log(registerComponent.form?.get("password")?.value, registerComponent.form?.get("confirmPassword")?.value)
       if (registerComponent.form?.get("password")?.value === registerComponent.form?.get("confirmPassword")?.value)
         return null;
       return { confirmPassword: true }

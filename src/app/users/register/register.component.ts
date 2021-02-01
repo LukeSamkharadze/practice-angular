@@ -69,7 +69,6 @@ export class RegisterComponent {
   }
 
   isAlertPermissible(controlName: string): boolean {
-    console.log(this.form);
     return Boolean(this.form.get(controlName)?.invalid && this.form.get(controlName)?.touched);
   }
 
