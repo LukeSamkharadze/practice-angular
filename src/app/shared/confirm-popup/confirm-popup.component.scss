@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #343a40;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.75);
+  max-width: 500px;
+
+  .exit-button{
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: white;
+  }
+
+  .buttons-container {
+    align-self: flex-end;
+    display: flex;
+    gap: 10px;
+  }
+}

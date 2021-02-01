@@ -9,6 +9,7 @@ import { UsersService } from '../../../services/users.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
+  isPopupOn = false;
   activeUser: User | null = null;
 
   @Output() userEditClick = new EventEmitter<User>();
@@ -28,11 +29,7 @@ export class ListComponent {
 
   onUserDeleteClicked(user: User) {
     if (user === this.usersService.getLoggedInUser()) {
-      if (window.confirm("Are you sure? This action is irreversible")) {
-        this.usersService.logOut();
-        this.router.navigate(["/login"]);
-        this.usersService.removeUser(user.email);
-      }
+      this.isPopupOn = true;
     }
     else
       window.alert("You dont have permission to edit other users");
@@ -40,5 +37,17 @@ export class ListComponent {
 
   getUserMenuOpacity(user: User): number {
     return Number(this.activeUser === user) * 100;
+  }
+
+  onConfirmClicked()
+  {
+    this.isPopupOn = false;
+    this.usersService.logOut();
+    this.router.navigate(["/login"]);
+    this.usersService.removeUser(this.usersService.getLoggedInUser()?.email!);
+  }
+
+  onCancelClicked(){
+    this.isPopupOn = false;
   }
 }

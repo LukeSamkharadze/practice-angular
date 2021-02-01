@@ -14,8 +14,8 @@
       <div>{{user.website}}</div>
     </div>
 
-    <div [style.opacity]="getUserMenuOpacity(user)" class="edit-menu">
-      <button class="btn btn-primary" (click)="onUserEditClicked(user)">
+    <div *ngIf="getUserMenuOpacity(user)" class="edit-menu">
+      <button class="btn btn-light" (click)="onUserEditClicked(user)">
         <i class="fas fa-user-edit"></i>
       </button>
 
@@ -25,3 +25,11 @@
     </div>
   </div>
 </div>
+
+<app-confirm-popup *ngIf="isPopupOn" (cancelClicked)="onCancelClicked()" (confirmClicked)="onConfirmClicked()">
+  <div class="text-light">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores minima quaerat incidunt esse deserunt distinctio
+    dolore minus. Repudiandae expedita doloribus earum ipsam explicabo? Inventore harum animi officia odio. Eius,
+    doloribus.
+  </div>
+</app-confirm-popup>

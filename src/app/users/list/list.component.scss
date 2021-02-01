@@ -1,4 +1,4 @@
-$edit-menu-color: rgba(0, 0, 0, 0.75);
+$edit-menu-color: #343A40;
 
 .main-container {
   display: flex;
@@ -29,7 +29,6 @@ $edit-menu-color: rgba(0, 0, 0, 0.75);
 
     > .edit-menu {
       transition: all 0.5s ease;
-      width: 100%;
       position: absolute;
       display: flex;
       justify-content: center;
@@ -39,11 +38,13 @@ $edit-menu-color: rgba(0, 0, 0, 0.75);
       border-radius: 10px;
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
       padding: 10px;
-
+      left: 50%;
+      transform: translateX(-50%);
+      
       &:before {
         content: "";
         position: absolute;
-        top: -21px;
+        top: -20px;
         left: 10px;
         border: 10px solid;
         border-color: transparent transparent $edit-menu-color transparent;

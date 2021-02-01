@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="exit-button" (click)="cancelClicked.emit($event)"><i class="fas fa-times"></i></div>
+  <div>
+    <ng-content></ng-content>
+  </div>
+  <div class="buttons-container">
+    <button (click)="confirmClicked.emit($event)" class="btn btn-light">Confirm</button>
+    <button (click)="cancelClicked.emit($event)" class="btn btn-light">Cancel</button>
+  </div>
+</div>
