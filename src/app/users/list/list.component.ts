@@ -39,15 +39,14 @@ export class ListComponent {
     return Number(this.activeUser === user) * 100;
   }
 
-  onConfirmClicked()
-  {
+  onConfirmClicked() {
     this.isPopupOn = false;
-    this.usersService.logOut();
     this.router.navigate(["/login"]);
     this.usersService.removeUser(this.usersService.getLoggedInUser()?.email!);
+    this.usersService.logOut();
   }
 
-  onCancelClicked(){
+  onCancelClicked() {
     this.isPopupOn = false;
   }
 }
