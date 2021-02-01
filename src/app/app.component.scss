@@ -16,6 +16,8 @@
   }
 
   nav.header {
+    text-align: center;
+    
     .navbar-brand {
       display: flex;
       align-items: center;
@@ -38,5 +40,6 @@
   }
   .body {
     flex-grow: 1;
+    padding: 20px;
   }
 }

@@ -21,6 +21,48 @@ export class UsersService {
       website: "www.facebook.com"
     },
     {
+      email: "lsamk19@gmail.com",
+      password: "123",
+      nickname: "luke",
+      phoneNumber: "+380987654321",
+      website: "www.facebook.com"
+    },
+    {
+      email: "lsamk19@gmail.com",
+      password: "123",
+      nickname: "luke",
+      phoneNumber: "+380987654321",
+      website: "www.facebook.com"
+    },
+    {
+      email: "lsamk19@gmail.com",
+      password: "123",
+      nickname: "luke",
+      phoneNumber: "+380987654321",
+      website: "www.facebook.com"
+    },
+    {
+      email: "lsamk19@gmail.com",
+      password: "123",
+      nickname: "luke",
+      phoneNumber: "+380987654321",
+      website: "www.facebook.com"
+    },
+    {
+      email: "lsamk19@gmail.com",
+      password: "123",
+      nickname: "luke",
+      phoneNumber: "+380987654321",
+      website: "www.facebook.com"
+    },
+    {
+      email: "lsamk19@gmail.com",
+      password: "123",
+      nickname: "luke",
+      phoneNumber: "+380987654321",
+      website: "www.facebook.com"
+    },
+    {
       email: "1",
       password: "1",
       nickname: "NoobMaster69",
